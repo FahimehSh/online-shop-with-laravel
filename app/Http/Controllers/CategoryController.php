@@ -75,7 +75,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $images = $category->files()->get();
-        return view('dashboard.admin.categories.edit', compact(['category', 'images']));
+        return view('dashboard.admin.categories.edit', compact('category', 'images'));
     }
 
     /**

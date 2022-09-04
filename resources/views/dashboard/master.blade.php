@@ -35,7 +35,7 @@
 <div class="wrapper boxed-wrapper">
     <header class="main-header">
         <!-- Logo -->
-        <a href="index.html" class="logo blue-bg" style="background-color: darkblue">
+        <a href="index.html" class="logo blue-bg" style="background-color: #01018d">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><img src="dist/img/logo-n.png" alt=""></span>
             <!-- logo for regular state and mobile devices -->

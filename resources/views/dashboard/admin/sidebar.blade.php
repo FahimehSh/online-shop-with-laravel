@@ -47,11 +47,11 @@
             <li class="active"><a href=""><i class="fa fa-circle"></i>ایجاد برند جدید</a></li>
         </ul>
     </li>
-    <li class="treeview"><a href="#"> <i class="fa fa-circle-o"></i> <span>مدیریت محصول ها</span> <span
+    <li class="treeview"><a href="#"> <i class="fa fa-circle-o"></i> <span>مدیریت کالاها</span> <span
                 class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
         <ul class="treeview-menu">
-            <li class="active"><a href=""><i class="fa fa-circle"></i>لیست محصول ها</a></li>
-            <li class="active"><a href=""><i class="fa fa-circle"></i>ایجاد محصول جدید</a></li>
+            <li class="active"><a href="{{route('products.index')}}"><i class="fa fa-circle"></i>لیست کالاها</a></li>
+            <li class="active"><a href="{{route('products.create')}}"><i class="fa fa-circle"></i>ایجاد کالای جدید</a></li>
         </ul>
     </li>
     <li class="treeview"><a href="#"> <i class="fa fa-circle-o"></i> <span>مدیریت فروشندگان</span> <span

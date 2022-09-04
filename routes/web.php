@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('home');
-//});
+Route::get('/', function () {
+    return view('home.main');
+})->name('main');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 
 Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function (){
     Route::get('/', [AdminController::class, 'index'])->name('index');
-
 
     Route::prefix('/categories')->group(function (){
         Route::get('/', [CategoryController::class, 'index'])
@@ -38,6 +40,21 @@ Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function (){
             ->name('categories.update');
         Route::get('/destroy/{category}', [CategoryController::class, 'destroy'])
             ->name('categories.destroy');
+    });
+
+    Route::prefix('/products')->group(function (){
+        Route::get('/', [ProductController::class, 'index'])
+            ->name('products.index');
+        Route::get('/create', [ProductController::class, 'create'])
+            ->name('products.create');
+        Route::post('/store', [ProductController::class, 'store'])
+            ->name('products.store');
+        Route::get('/edit/{product}', [ProductController::class, 'edit'])
+            ->name('products.edit');
+        Route::post('/update/{product}', [ProductController::class, 'update'])
+            ->name('products.update');
+        Route::get('/destroy/{product}', [ProductController::class, 'destroy'])
+            ->name('products.destroy');
     });
 });
 
