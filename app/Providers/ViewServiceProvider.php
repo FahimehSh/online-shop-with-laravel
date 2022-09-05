@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Discount;
+use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -31,19 +32,26 @@ class ViewServiceProvider extends ServiceProvider
         View::composer([
             'dashboard.admin.categories.create',
             'dashboard.admin.categories.edit',
-            'dashboard.admin.products.create',
-            'dashboard.admin.products.edit'
+            'home.main'
         ], function ($view){
             $view->with('categories', Category::getCategories());
         } );
 
         View::composer([
-            'dashboard.admin.products.create',
-            'dashboard.admin.products.edit',
+            'dashboard.admin.products.*',
         ], function ($view){
             $view->with('brands', Brand::getBrands());
             $view->with('suppliers', Supplier::getSuppliers());
             $view->with('discounts', Discount::getDiscounts());
+        });
+
+        View::composer([
+            'dashboard.admin.products.create',
+            'dashboard.admin.products.edit',
+            'home.*'
+        ], function ($view){
+            $view->with('headerProducts', Product::getHeaderProducts());
+            $view->with('firstCategories', Category::getFirstCategories());
         });
     }
 }

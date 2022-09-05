@@ -43,7 +43,7 @@ class CategoryController extends Controller
         $category = Category::create([
             'title' => $request->title,
             'meta_title' => $request->meta_title,
-            'parent_id' => $request->parent_id
+            'parent_id' => $request->parent_id,
         ]);
 
         if (filled($request->images)) {

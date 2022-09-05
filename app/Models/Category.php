@@ -46,6 +46,11 @@ class Category extends Model
         return static::all();
     }
 
+    public static function getFirstCategories()
+    {
+        return static::query()->whereNull('parent_id')->with('children')->get();
+    }
+
     public function files()
     {
         return $this->morphMany(File::class, 'fileable');

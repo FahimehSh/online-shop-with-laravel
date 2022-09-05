@@ -22,7 +22,8 @@
     <div class="info-box">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post" action="{{route('products.update', ['product'=>$product->id])}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('products.update', ['product'=>$product->id])}}"
+                      enctype="multipart/form-data">
                     @csrf
                     <fieldset class="form-group">
                         <label class="text-black font-weight-bold">نام کالا</label>
@@ -51,7 +52,8 @@
                                     <option value="{{null}}">نام برند مورد نظرتان را انتخاب کنید:
                                     </option>
                                     @foreach($brands as $brand)
-                                        <option value="{{$brand->id}}" @selected($product->brand_id==$brand->id)>{{$brand->title}}</option>
+                                        <option
+                                            value="{{$brand->id}}" @selected($product->brand_id==$brand->id)>{{$brand->title}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -65,7 +67,8 @@
                                     <option value="{{null}}">نام فروشنده مورد نظرتان را انتخاب کنید:
                                     </option>
                                     @foreach($suppliers as $supplier)
-                                        <option value="{{$supplier->id}}" @selected($product->supplier_id==$supplier->id)>{{$supplier->description}}</option>
+                                        <option
+                                            value="{{$supplier->id}}" @selected($product->supplier_id==$supplier->id)>{{$supplier->description}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -79,7 +82,8 @@
                                     <option value="{{null}}">تخفیفی که می خواهید برای این محصول فعال شود را انتخاب کنید:
                                     </option>
                                     @foreach($discounts as $discount)
-                                        <option value="{{$discount->id}}" @selected($product->discount_id==$discount->id)>{{$discount->name}}</option>
+                                        <option
+                                            value="{{$discount->id}}" @selected($product->discount_id==$discount->id)>{{$discount->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -89,13 +93,27 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب دسته بندی:</label>
-                                <select name="parent_id" class="form-control">
-                                    <option value="{{null}}">دسته بندی مورد نظر خود را انتخاب کنید:
-                                    </option>
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                <ul>
+                                    @foreach($firstCategories as $category)
+                                        <div class="radio">
+                                            <input type="radio" name="parent_category" id="optionsRadios1"
+                                                   value="{{$category->id}}"
+                                                   @if(in_array($category->id, $product->categories->pluck('id')->toArray())) checked @endif>
+                                            {{ $category->title }}
+                                            @if(count($category->children))
+                                                <select name="child_category" class="form-control">--}}
+                                                    <option value="{{null}}">زیر دسته بندی مورد نظر خود را انتخاب
+                                                        کنید:
+                                                    </option>
+                                                    @foreach($category->children as $child)
+                                                        <option
+                                                            value="{{$child->id}}" @selected(in_array($child->id, $product->categories->pluck('id')->toArray()))>{{$child->title}}</option>
+                                                    @endforeach
+                                                </select>
+                                            @endif
+                                        </div>
                                     @endforeach
-                                </select>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -103,21 +121,45 @@
                         <div class="col-lg-6">
                             <fieldset class="form-group">
                                 <label class="text-black font-weight-bold">قیمت کالا</label>
-                                <input class="form-control" id="basicInput" type="text" name="price" value="{{old('price', $product->price)}}">
+                                <input class="form-control" id="basicInput" type="text" name="price"
+                                       value="{{old('price', $product->price)}}">
                             </fieldset>
                         </div>
                         <div class="col-lg-6">
                             <fieldset class="form-group">
                                 <label class="text-black font-weight-bold">تعداد کالا</label>
-                                <input class="form-control" id="basicInput" type="text" name="quantity" value="{{old('quantity', $product->quantity)}}">
+                                <input class="form-control" id="basicInput" type="text" name="quantity"
+                                       value="{{old('quantity', $product->quantity)}}">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="text-black font-weight-bold">SKU</label>
+                                <input class="form-control" id="basicInput" type="text" name="quantity"
+                                       value="{{old('sku', $product->sku)}}">
                             </fieldset>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
+                                <label for="exampleInputFile" class="text-black font-weight-bold">عکس های این دسته
+                                    بندی:</label>
+                                <div>
+                                    @foreach($images as $image)
+                                        <img src="{{asset('storage/uploads/'.$image->name)}}" alt="category image"
+                                             style="width: 200px;height: auto">
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
                                 <label for="exampleInputFile" class="text-black font-weight-bold">بارگذاری عکس:</label>
-                                <input type="file" name="images[]" id="exampleInputFile" class="col-lg-6" accept="img/*" multiple required>
+                                <input type="file" name="images[]" id="exampleInputFile" class="col-lg-6" accept="img/*"
+                                       multiple>
                             </div>
                         </div>
                     </div>

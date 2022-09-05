@@ -30,12 +30,14 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <label class="text-black font-weight-bold">توضیحات</label>
-                        <input class="form-control" id="basicInput" type="text" name="meta_title" value="{{old('meta_title')}}">
+                        <input class="form-control" id="basicInput" type="text" name="meta_title"
+                               value="{{old('meta_title')}}">
                     </fieldset>
                     <div class="col-lg-12">
                         <fieldset class="form-group">
                             <label class="text-black font-weight-bold">معرفی محصول</label>
-                            <textarea name="introduction" class="form-control" id="placeTextarea" rows="5" placeholder="معرفی محصول ..."></textarea>
+                            <textarea name="introduction" class="form-control" id="placeTextarea" rows="5"
+                                      placeholder="معرفی محصول ..."></textarea>
                         </fieldset>
                     </div>
                     <div class="form-group">
@@ -84,13 +86,25 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب دسته بندی:</label>
-                                <select name="parent_id" class="form-control">
-                                    <option value="{{null}}">دسته بندی مورد نظر خود را انتخاب کنید:
-                                    </option>
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                <ul>
+                                    @foreach($firstCategories as $category)
+                                        <div class="radio">
+                                            <input type="radio" name="parent_category" id="optionsRadios1"
+                                                   value="{{$category->id}}">
+                                            {{ $category->title }}
+                                            @if(count($category->children))
+                                                <select name="child_category" class="form-control">--}}
+                                                    <option value="{{null}}">زیر دسته بندی مورد نظر خود را انتخاب
+                                                        کنید:
+                                                    </option>
+                                                    @foreach($category->children as $child)
+                                                        <option value="{{$child->id}}">{{$child->title}}</option>
+                                                    @endforeach
+                                                </select>
+                                            @endif
+                                        </div>
                                     @endforeach
-                                </select>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -98,13 +112,22 @@
                         <div class="col-lg-6">
                             <fieldset class="form-group">
                                 <label class="text-black font-weight-bold">قیمت کالا</label>
-                                <input class="form-control" id="basicInput" type="text" name="price" value="{{old('price')}}">
+                                <input class="form-control" id="basicInput" type="text" name="price"
+                                       value="{{old('price')}}">
                             </fieldset>
                         </div>
                         <div class="col-lg-6">
                             <fieldset class="form-group">
                                 <label class="text-black font-weight-bold">تعداد کالا</label>
-                                <input class="form-control" id="basicInput" type="text" name="quantity" value="{{old('quantity')}}">
+                                <input class="form-control" id="basicInput" type="text" name="quantity"
+                                       value="{{old('quantity')}}">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset class="form-group">
+                                <label class="text-black font-weight-bold">SKU</label>
+                                <input class="form-control" id="basicInput" type="text" name="sku"
+                                       value="{{old('sku')}}">
                             </fieldset>
                         </div>
                     </div>
@@ -112,7 +135,8 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="exampleInputFile" class="text-black font-weight-bold">بارگذاری عکس:</label>
-                                <input type="file" name="images[]" id="exampleInputFile" class="col-lg-6" accept="img/*" multiple required>
+                                <input type="file" name="images[]" id="exampleInputFile" class="col-lg-6" accept="img/*"
+                                       multiple required>
                             </div>
                         </div>
                     </div>

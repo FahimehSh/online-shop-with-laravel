@@ -17,6 +17,7 @@
                     <thead class="text-white" style="background-color: darkblue">
                     <tr>
                         <th scope="col">ردیف</th>
+                        <th scope="col">عکس دسته بندی</th>
                         <th scope="col">نام دسته بندی</th>
                         <th scope="col">توضیحات</th>
                         <th scope="col">عملیات</th>
@@ -26,6 +27,7 @@
                     @foreach($categories as $category)
                         <tr>
                             <th scope="row">{{$categories->firstItem() + $loop->index}}</th>
+                            <td><img src="{{asset('storage/uploads/'.$category->files->first()->name)}}" style="width: 80px;height: auto"></td>
                             <td>{{$category->title}}</td>
                             <td>{{mb_substr($category->meta_title, 0 , 20). '...'}}</td>
                             <td>

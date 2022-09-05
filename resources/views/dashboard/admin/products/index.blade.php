@@ -17,10 +17,13 @@
                     <thead class="text-white" style="background-color: darkblue">
                     <tr>
                         <th scope="col">ردیف</th>
+                        <th scope="col">عکس کالا</th>
                         <th scope="col">نام کالا</th>
                         <th scope="col">توضیحات</th>
                         <th scope="col">نام برند</th>
                         <th scope="col">قیمت(تومان)</th>
+                        <th scope="col">مقدار تخفیف</th>
+                        <th scope="col">موجودی</th>
                         <th scope="col">عملیات</th>
                     </tr>
                     </thead>
@@ -28,10 +31,15 @@
                     @foreach($products as $product)
                         <tr>
                             <th scope="row">{{$products->firstItem() + $loop->index}}</th>
+                            <td><img src="{{filled($product->files)?
+asset('storage/uploads/'.$product->files->first()->name):
+asset('dashboardStyle/dist/img/body-bg.jpg')}}" style="width: 80px;height: auto"></td>
                             <td>{{$product->title}}</td>
                             <td>{{mb_substr($product->meta_title, 0 , 20). '...'}}</td>
                             <td>{{$product->brand->title}}</td>
                             <td>{{$product->price}}</td>
+                            <td>{{(filled($product->discount))?$product->discount->amount:''}}</td>
+                            <td>{{$product->quantity}}</td>
                             <td>
                                 <a class="btn btn-rounded btn-success text-white"
                                    href="{{route('products.edit', ['product'=>$product->id])}}">ویرایش</a>

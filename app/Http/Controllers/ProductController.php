@@ -49,9 +49,16 @@ class ProductController extends Controller
             'supplier_id' => $request->supplier_id,
             'discount_id' => $request->discount_id,
             'price' => $request->price,
-            'quantity' => $request->quantity
+            'quantity' => $request->quantity,
+            'sku' => $request->sku
         ]);
 
+        if(filled($request->child_category)){
+            $parent_category_id = Category::query()->find($request->child_category)->parent_id;
+            $product->categories()->attach([$parent_category_id, $request->child_category]);
+        }
+
+        $product->categories()->attach($request->parent_category);
 
         if (filled($request->images)) {
             foreach ($request->images as $image) {
@@ -102,7 +109,15 @@ class ProductController extends Controller
         $product->supplier_id = $request->supplier_id;
         $product->discount_id = $request->discount_id;
         $product->price = $request->price;
+        $product->sku = $request->sku;
         $product->save();
+
+        if(filled($request->child_category)){
+            $parent_category_id = Category::query()->find($request->child_category)->parent_id;
+            $product->categories()->sync([$parent_category_id, $request->child_category]);
+        }
+
+        $product->categories()->sync($request->parent_category);
 
         if (filled($request->images)) {
             foreach ($request->images as $image) {
@@ -123,7 +138,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->files()->delete();
-        $product->categories()->delete();
+        $product->categories()->detach();
         $product->delete();
         return Redirect::route('products.index');
     }

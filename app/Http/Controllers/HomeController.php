@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('home.shop');
+        return view('home.main');
     }
 
     /**
@@ -81,12 +82,5 @@ class ShopController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getListProductsInCategory($slug)
-    {
-        $category = Category::where('slug', $slug)->first();
-        $listProductsInCategory = $category->products()->orderBy('created_at')->paginate(12);
-        return view('home.shop', compact('listProductsInCategory'));
     }
 }

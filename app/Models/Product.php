@@ -48,4 +48,9 @@ class Product extends Model
     {
         return $this->morphMany(File::class, 'fileable');
     }
+
+    public static function getHeaderProducts()
+    {
+        return static::query()->inRandomOrder()->take(3)->get();
+    }
 }
