@@ -38,7 +38,6 @@ class RegisteredUserController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'user_IP'=>$request->ip()
         ]);
 
         $user = User::create([
@@ -46,6 +45,7 @@ class RegisteredUserController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'user_IP'=>$request->ip(),
             'registered_at'=>now(),
             'last_login'=>now(),
         ]);
@@ -54,6 +54,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->intended('/profile');
     }
 }

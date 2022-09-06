@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Product;
+use App\Models\Order_items;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class OrderItemsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cart = session()->get('cart');
-        if ($cart == null){
-            $cart = [];
-        }
-
-        return view('home.main')->with('cart', $cart);
+        //
     }
 
     /**
@@ -47,10 +41,10 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Order_items  $order_items
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order_items $order_items)
     {
         //
     }
@@ -58,10 +52,10 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Order_items  $order_items
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Order_items $order_items)
     {
         //
     }
@@ -70,10 +64,10 @@ class HomeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Order_items  $order_items
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order_items $order_items)
     {
         //
     }
@@ -81,10 +75,10 @@ class HomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Order_items  $order_items
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order_items $order_items)
     {
         //
     }

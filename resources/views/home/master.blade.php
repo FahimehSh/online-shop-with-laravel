@@ -104,11 +104,16 @@
             <nav class="navbar navbar-expand-lg bg-darkblue navbar-dark py-3 py-lg-0 px-0">
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">صفحه اصلی</a>
+                        <a href="{{route('main')}}" class="nav-item nav-link active">صفحه اصلی</a>
                         <a href="{{route('shop')}}" class="nav-item nav-link">فروشگاه</a>
                         <a href="detail.html" class="nav-item nav-link">بلاگ</a>
                         <a href="contact.html" class="nav-item nav-link">تماس با ما</a>
                         <a href="contact.html" class="nav-item nav-link">درباره ما</a>
+                        @if(!auth()->check())
+                        <a href="{{route('register')}}" class="nav-item nav-link">ثبت نام</a>
+                        <a href="{{route('login')}}" class="nav-item nav-link">ورود</a>
+                        @endif
+                        <a href="{{route('logout')}}" class="nav-item nav-link">خروج</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                         <a href="" class="btn px-0">
@@ -116,9 +121,9 @@
                             <span class="badge text-secondary border border-secondary rounded-circle"
                                   style="padding-bottom: 2px;">0</span>
                         </a>
-                        <a href="" class="btn px-0 ml-3">
+                        <a href="{{route('cart.items')}}" class="btn px-0 ml-3">
                             <i class="fas fa-shopping-cart text-primary"></i>
-                            <span class="badge text-secondary border border-secondary rounded-circle"
+                            <span id="items-in-cart" class="badge text-secondary border border-secondary rounded-circle"
                                   style="padding-bottom: 2px;">0</span>
                         </a>
                     </div>

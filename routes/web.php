@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -24,20 +25,35 @@ use Illuminate\Support\Facades\Route;
 //home
 Route::get('/', [HomeController::class, 'index'])->name('main');
 
-Route::prefix('/shop')->group(function (){
+Route::prefix('/shop')->namespace('shop')->group(function () {
     Route::get('/', [ShopController::class, 'index'])
         ->name('shop');
     Route::get('/categories/{slug}', [ShopController::class, 'getListProductsInCategory'])
         ->name('shop.productsInCategory');
+    Route::get('/{product}', [ShopController::class, 'show'])
+        ->name('show.product');
+
+
+    Route::prefix('/cart')->namespace('cart')->group(function (){
+        Route::get('/', [CartController::class, 'index'])
+            ->name('cart.items');
+        Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])
+            ->name('add.to.cart');
+        Route::get('/destroy/{product}', [CartController::class, 'deleteCartItem'])
+            ->name('destroy.cartItem');
+        Route::get('increament/{product}', [CartController::class, 'increamentProduct'])
+            ->name('increament.product');
+//        Route::get('decrement/{product}', [CartController::class, 'decreamentProduct'])
+//            ->name('decreament.product');
+    });
 });
 
 
-
 //dashboard
-Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function (){
+Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
-    Route::prefix('/categories')->group(function (){
+    Route::prefix('/categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])
             ->name('categories.index');
         Route::get('/create', [CategoryController::class, 'create'])
@@ -52,7 +68,7 @@ Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function (){
             ->name('categories.destroy');
     });
 
-    Route::prefix('/products')->group(function (){
+    Route::prefix('/products')->group(function () {
         Route::get('/', [ProductController::class, 'index'])
             ->name('products.index');
         Route::get('/create', [ProductController::class, 'create'])
@@ -69,9 +85,9 @@ Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function (){
 });
 
 
-Route::prefix('/profile')->group(function (){
+Route::prefix('/profile')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('user-dashboard');
 });
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -49,6 +49,11 @@ class Product extends Model
         return $this->morphMany(File::class, 'fileable');
     }
 
+    public function cart_items()
+    {
+        return $this->hasMany(Cart_item::class);
+    }
+
     public static function getHeaderProducts()
     {
         return static::query()->inRandomOrder()->take(3)->get();

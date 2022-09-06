@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\CartController;
 use App\Models\Brand;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Discount;
 use App\Models\Product;
