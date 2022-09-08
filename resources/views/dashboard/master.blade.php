@@ -35,11 +35,13 @@
 <div class="wrapper boxed-wrapper">
     <header class="main-header">
         <!-- Logo -->
-        <a href="index.html" class="logo blue-bg" style="background-color: #01018d">
+        <a href="{{route('main')}}" class="logo blue-bg" style="background-color: gold">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><img src="dist/img/logo-n.png" alt=""></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><img src="dist/img/logo.png" alt=""></span> </a>
+            <span class="logo-lg">فروشگاه آنلاین</span>
+        </a>
+
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar blue-bg navbar-static-top" style="background-color: darkblue">
             <!-- Sidebar toggle button-->
@@ -148,7 +150,7 @@
         <div class="sidebar">
             <!-- Sidebar user panel -->
             <div class="user-panel">
-                <div class="image text-center"><img src="dist/img/img1.jpg" class="img-circle" alt="User Image"></div>
+                <div class="image text-center"><img src="{{$user_pic}}" class="img-circle" alt="User Image"></div>
                 <div class="info">
                     <p>Alexander Pierce</p>
                 </div>

@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 
@@ -49,4 +51,34 @@ class User extends Authenticatable
     ];
 
     public $timestamps = false;
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
+
+    public static function getUserImage()
+    {
+        if (Auth::user()) {
+            $user = Auth::user();
+            if ($user->files->first() != '' && $user->files->first() != null) {
+                $path = $user->files->first()->path;
+                $name = $user->files->first()->name;
+                $user_pic = Storage::url($path.'/'.$name);
+            } else {
+                $user_pic = asset('dashboardStyle/dist/img/img1.jpg');
+            }
+            return $user_pic;
+        }
+    }
 }

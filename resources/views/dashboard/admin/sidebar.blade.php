@@ -1,6 +1,6 @@
 <ul class="sidebar-menu" data-widget="tree">
     <li class="active">
-        <a href=""> <i class="fa fa-user-circle"></i> <span>حساب کاربری</span> </a>
+        <a href="{{route('personal-info')}}"> <i class="fa fa-user-circle"></i> <span>حساب کاربری</span> </a>
     </li>
     <li class="active">
         <a href=""> <i class="fa fa-map-marker"></i> <span>آدرس ها</span> </a>

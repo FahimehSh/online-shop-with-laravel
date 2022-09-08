@@ -12,6 +12,7 @@ class File extends Model
 
     public function fileable()
     {
-        return $this->morphTo();
+        return $this->morphTo()->withPivot('path');
     }
+
 }

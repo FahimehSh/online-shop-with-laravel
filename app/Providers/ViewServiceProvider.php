@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Discount;
 use App\Models\Product;
 use App\Models\Supplier;
+use App\Models\User;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -54,6 +55,12 @@ class ViewServiceProvider extends ServiceProvider
         ], function ($view){
             $view->with('headerProducts', Product::getHeaderProducts());
             $view->with('firstCategories', Category::getFirstCategories());
+            $view->with('cart', Cart::getCartItems());
+            $view->with('cartItemsCount', Cart::cartItemsCount());
+        });
+
+        View::composer('dashboard.*', function ($view){
+            $view->with('user_pic', User::getUserImage());
         });
     }
 }

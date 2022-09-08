@@ -5,6 +5,13 @@
 @section('content')
     <div class="container-fluid pb-5">
         <div class="row px-xl-5">
+            @if(!auth()->check())
+                <p>
+                    برای ثبت کالا در سبد خرید و یا ثبت سفارش باید ابتدا وارد سایت شوید.
+                    <a class="text-danger" href="{{route('login')}}">ورود/</a>
+                    <a class="text-danger" href="{{route('register')}}">ثبت نام</a>
+                </p>
+            @endif
             <div class="col-lg-5 mb-30">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner bg-light">
@@ -38,7 +45,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                         </div>
                         <small class="pt-1">(99 دیدگاه)</small>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">{{$product->price}} تومان</h3>
+                    <h3 class="font-weight-semi-bold mb-4">{{$product->presentPrice()}} تومان</h3>
                     <p class="mb-4">
                         {{$product->meta_title}}
                     </p>
@@ -63,15 +70,16 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-minus">
+                                <a class="btn btn-primary btn-minus">
                                     <i class="fa fa-minus"></i>
-                                </button>
+                                </a>
                             </div>
                             <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-plus">
+                                <a class="btn btn-primary btn-plus"
+                                   href="">
                                     <i class="fa fa-plus"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                         <a class="btn btn-danger px-3" href="{{route('add.to.cart', ['product'=>$product->id])}}">
@@ -233,18 +241,15 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}" alt="">
                                     <a class="btn btn-outline-dark btn-square" href=""><i
                                             class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i
-                                            class="fa fa-sync-alt"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                                 </div>
                             </div>
                             <div class="text-center py-4">
                                 <a class="h6 text-decoration-none text-truncate"
                                    href="{{route('show.product',['product'=>$item->id])}}">{{$item->title}}</a>
                                 <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>$123.00</h5>
+                                    <h5>12300</h5>
                                     <h6 class="text-muted ml-2">
-                                        <del>{{$item->price}}</del>
+                                        <del>{{$item->presentPrice()}}</del>
                                     </h6>
                                 </div>
                             </div>

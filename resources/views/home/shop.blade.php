@@ -7,6 +7,7 @@
     <div class="container-fluid">
         <div class="row px-xl-5">
 
+
             @if(!auth()->check())
                 <p>
                     برای ثبت کالا در سبد خرید و یا ثبت سفارش باید ابتدا وارد سایت شوید.
@@ -14,6 +15,7 @@
                     <a class="text-danger" href="{{route('register')}}">ثبت نام</a>
                 </p>
             @endif
+
             <!-- Shop Product Start -->
             <div class="col-lg-9 col-md-8">
                 <div class="row pb-3">
@@ -50,7 +52,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                                         <a class="btn btn-outline-dark btn-square add-to-cart"
                                            href="{{route('add.to.cart', ['product'=>$product->id])}}"
                                            data-id="{{$product->id}}" data-name="{{$product->title}}"
-                                           data-price="{{$product->price}}">
+                                           data-price="{{$product->presentPrice()}}">
                                             <i class="fa fa-shopping-cart"></i>
                                         </a>
                                         <a class="btn btn-outline-dark btn-square" href="">
@@ -60,7 +62,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                                 </div>
                                 <div class="text-center py-4">
                                     <a class="h6 text-decoration-none text-truncate"
-                                       href="{{route('show.product',['product'=>$product->id])}}">{{$product->title}}
+                                       href="{{route('show.product',['product'=>$product->slug])}}">{{$product->title}}
                                     </a>
                                     <div class="d-flex align-items-center justify-content-center mt-2">
                                         <h5>قیمت با تخفیف</h5>

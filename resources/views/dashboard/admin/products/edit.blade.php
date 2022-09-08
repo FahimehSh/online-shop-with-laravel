@@ -122,7 +122,7 @@
                             <fieldset class="form-group">
                                 <label class="text-black font-weight-bold">قیمت کالا</label>
                                 <input class="form-control" id="basicInput" type="text" name="price"
-                                       value="{{old('price', $product->price)}}">
+                                       value="{{old('price', $product->presentPrice())}}">
                             </fieldset>
                         </div>
                         <div class="col-lg-6">

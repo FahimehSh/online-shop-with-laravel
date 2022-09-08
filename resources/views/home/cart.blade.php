@@ -3,6 +3,8 @@
 @section('page-title', 'سبد خرید')
 
 @section('content')
+
+
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
@@ -10,9 +12,9 @@
                     <thead class="thead-dark">
                     <tr>
                         <th>کالاها</th>
-                        <th>قیمت(تومان)</th>
+                        <th>قیمت واحد(تومان)</th>
                         <th>تعداد</th>
-                        <th>مبلغ کل(تومان)</th>
+                        <th>قیمت با تخفیف(تومان)</th>
                         <th>حذف</th>
                     </tr>
                     </thead>
@@ -22,7 +24,7 @@
                             <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;">
                                 {{$cart_item->products->title}}
                             </td>
-                            <td class="align-middle">{{$cart_item->price}}</td>
+                            <td class="align-middle">{{number_format($cart_item->products->price)}}</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -40,7 +42,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">150</td>
+                            <td class="align-middle"></td>
                             <td class="align-middle">
                                 <a href="{{route('destroy.cartItem', ['product'=>$cart_item->product_id])}}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
                             </td>
@@ -63,19 +65,21 @@
                     <div class="border-bottom pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>قیمت کالاها(تومان)</h6>
-                            <h6>150</h6>
+                            <h6>
+                                {{number_format($subTotalPrice)}}
+                            </h6>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">هزینه حمل و نقل(تومان)</h6>
-                            <h6 class="font-weight-medium">10</h6>
+                            <h6 class="font-weight-medium">تخفیف</h6>
+                            <h6 class="font-weight-medium"></h6>
                         </div>
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>هزینه کل(تومان)</h5>
-                            <h5>160</h5>
+                            <h5>{{number_format($subTotalPrice)}}</h5>
                         </div>
-                        <button class="btn btn-block btn-danger font-weight-bold my-3 py-3">ادامه</button>
+                        <a href="{{route('checkout.index')}}" class="btn btn-block btn-danger font-weight-bold my-3 py-3">ادامه فرآیند خرید</a>
                     </div>
                 </div>
             </div>

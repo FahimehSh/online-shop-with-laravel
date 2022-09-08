@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\OrderRegistered;
-use App\Models\Category;
-use App\Models\Product;
+use App\Models\Cart;
+use App\Models\City;
+use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::query()->latest('created_at')->take(8)->get();
-        return view('home.main', compact('products'));
+        $states = State::all();
+        $cities = City::all();
+        if(Auth::check()){
+            $cart = Cart::query()->where('user_id', Auth::id())->first();
+            if($cart->exists() && filled($cart->cart_items)){
+                $cart_items = $cart->cart_items;
+                $subTotalPrice = CartController::getTotalPrice($cart);
+            }
+        }
+        return view('home.checkout', compact( 'states', 'cities', 'cart_items', 'subTotalPrice'));
     }
 
     /**
@@ -34,7 +42,7 @@ class HomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,7 +53,7 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -56,7 +64,7 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -67,8 +75,8 @@ class HomeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -79,7 +87,7 @@ class HomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

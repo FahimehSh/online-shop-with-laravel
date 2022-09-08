@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -33,11 +34,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $user = Auth::user();
-        if($user->is_admin) {
-            return redirect()->intended('/dashboard');
+        if (Auth::user()->is_admin == 1) {
+            return Redirect::route('admin.index');
         }
-        return redirect()->intended('/profile');
+
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

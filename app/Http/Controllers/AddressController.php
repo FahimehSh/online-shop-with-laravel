@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\OrderRegistered;
-use App\Models\Category;
-use App\Models\Product;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::query()->latest('created_at')->take(8)->get();
-        return view('home.main', compact('products'));
+        //
     }
 
     /**
@@ -34,18 +31,26 @@ class HomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $address = new Address();
+        $address->user_id = Auth::id();
+        $address->state_id = 1;
+        $address->city_id = 1;
+        $address->detail = $request->detail;
+        $address->postal_code = $request->postal_code;
+        $address->save();
+
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -56,7 +61,7 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -67,19 +72,25 @@ class HomeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $address = Auth::user()->addresses->first();
+        $address->state_id = 1;
+        $address->city_id = 1;
+        $address->detail = $request->detail;
+        $address->postal_code = $request->postal_code;
+        $address->save();
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

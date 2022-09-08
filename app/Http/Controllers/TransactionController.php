@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\OrderRegistered;
-use App\Models\Category;
-use App\Models\Product;
+use App\Models\Order;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::query()->latest('created_at')->take(8)->get();
-        return view('home.main', compact('products'));
+        //
     }
 
     /**
@@ -37,9 +35,14 @@ class HomeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Order $order)
     {
-        //
+        $transaction = new Transaction();
+        $transaction->order_id = $order->id;
+        $transaction->user_id = Auth::id();
+        $transaction->gateway_id = 1;
+        $transaction->tracking_code = mt_rand(1, 999).time().mt_rand(1, 999);
+        $transaction->save();
     }
 
     /**

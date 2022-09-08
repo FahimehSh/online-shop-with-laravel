@@ -22,8 +22,9 @@ class ShopController extends Controller
     }
 
 
-    public function show(Product $product)
+    public function show($slug)
     {
+        $product = Product::query()->where('slug', $slug)->firstOrFail();
         $mightAlsoLike = Product::query()->where('slug', '!=', $product->slug)
             ->inRandomOrder()->take(4)->get();
         return view('home.showProduct', compact('product', 'mightAlsoLike'));
@@ -36,5 +37,6 @@ class ShopController extends Controller
         $listProductsInCategory = $category->products()->orderBy('created_at')->paginate(12);
         return view('home.productsInCategory', compact('listProductsInCategory', 'category'));
     }
+
 
 }

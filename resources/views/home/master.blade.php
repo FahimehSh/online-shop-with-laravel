@@ -46,7 +46,7 @@
     </div>
     <div class="row bg-light py-3 d-none d-lg-flex text-right">
         <div class="col-lg-6" style="padding-right: 0">
-            <a href="" class="text-decoration-none">
+            <a href="{{route('main')}}" class="text-decoration-none">
                 <span class="h1 text-uppercase text-primary px-2" style="background-color: #141467">فروشگاه</span>
                 <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">آنلاین</span>
             </a>
@@ -54,7 +54,7 @@
         <div class="col-lg-6 col-8 text-left">
             <form action="">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="جستجو در کالاها">
+                    <input type="text" class="form-control" placeholder="جستجو">
                     <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -82,7 +82,8 @@
                 <div class="navbar-nav w-100">
                     @foreach($firstCategories as $category)
                         <div class="nav-item dropdown dropleft">
-                            <a href="{{route('shop.productsInCategory', ['slug'=>$category->slug])}}" class="nav-link dropdown-toggle text-right" data-toggle="dropdown">
+                            <a href="{{route('shop.productsInCategory', ['slug'=>$category->slug])}}"
+                               class="nav-link dropdown-toggle text-right" data-toggle="dropdown">
                                 {{$category->title}}
                                 <i
                                     class="fa fa-angle-left float-left mt-1">
@@ -91,7 +92,8 @@
                             @if(filled($category->children))
                                 <div class="dropdown-menu position-absolute rounded-0 border-0 m-0 text-right">
                                     @foreach($category->children as $child1)
-                                        <a href="{{route('shop.productsInCategory', ['slug'=>$child1->slug])}}" class="dropdown-item">{{$child1->title}}</a>
+                                        <a href="{{route('shop.productsInCategory', ['slug'=>$child1->slug])}}"
+                                           class="dropdown-item">{{$child1->title}}</a>
                                     @endforeach
                                 </div>
                             @endif
@@ -110,8 +112,8 @@
                         <a href="contact.html" class="nav-item nav-link">تماس با ما</a>
                         <a href="contact.html" class="nav-item nav-link">درباره ما</a>
                         @if(!auth()->check())
-                        <a href="{{route('register')}}" class="nav-item nav-link">ثبت نام</a>
-                        <a href="{{route('login')}}" class="nav-item nav-link">ورود</a>
+                            <a href="{{route('register')}}" class="nav-item nav-link">ثبت نام</a>
+                            <a href="{{route('login')}}" class="nav-item nav-link">ورود</a>
                         @endif
                         <a href="{{route('logout')}}" class="nav-item nav-link">خروج</a>
                     </div>
@@ -124,7 +126,9 @@
                         <a href="{{route('cart.items')}}" class="btn px-0 ml-3">
                             <i class="fas fa-shopping-cart text-primary"></i>
                             <span id="items-in-cart" class="badge text-secondary border border-secondary rounded-circle"
-                                  style="padding-bottom: 2px;">0</span>
+                                  style="padding-bottom: 2px;">
+                                {{filled($cart)?$cartItemsCount:0}}
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -137,7 +141,7 @@
 @yield('content')
 
 <!-- Footer Start -->
-<div class="container-fluid text-secondary mt-5 pt-5" style="background-color: #141467">
+<div class="container-fluid text-secondary mt-5 pt-5 text-right" style="background-color: #141467">
     <div class="row px-xl-5 pt-5">
         <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
             <h5 class="text-secondary text-uppercase mb-4">فروشگاه آنلاین، بررسی، انتخاب و خرید آنلاین</h5>
@@ -146,24 +150,24 @@
                 مدت زمانی کوتاه به دست مشتریان خود برساند و ضمانت بازگشت کالا هم داشته باشد؛ ویژگی‌هایی که فروشگاه
                 اینترنتی دیجی‌کالا سال‌هاست بر روی آن‌ها کار کرده و توانسته از این طریق مشتریان ثابت خود را داشته باشد.
             </p>
-            <p class="mb-2 text-right"><i class="fa fa-map-marker-alt text-primary ml-3"></i>123 Street, New York, USA
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary ml-3"></i>123 Street, New York, USA
             </p>
-            <p class="mb-2 text-right"><i class="fa fa-envelope text-primary ml-3"></i>info@example.com</p>
-            <p class="mb-0 text-right"><i class="fa fa-phone-alt text-primary ml-3"></i>+012 345 67890</p>
+            <p class="mb-2"><i class="fa fa-envelope text-primary ml-3"></i>info@example.com</p>
+            <p class="mb-0"><i class="fa fa-phone-alt text-primary ml-3"></i>+012 345 67890</p>
         </div>
         <div class="col-lg-8 col-md-12">
             <div class="row">
                 <div class="col-md-4 mb-5">
-                    <h5 class="text-secondary text-uppercase mb-4 text-right">Quick Shop</h5>
-                    <div class="d-flex flex-column justify-content-start text-right">
+                    <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
+                    <div class="d-flex flex-column justify-content-start">
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-left mr-2"></i>صفحه اصلی</a>
                         <a class="text-secondary mb-2" href="{{route('shop')}}"><i class="fa fa-angle-left mr-2"></i>فروشگاه</a>
                         <a class="text-secondary" href="#"><i class="fa fa-angle-left mr-2"></i>ارتباط با ما</a>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
-                    <h5 class="text-secondary text-uppercase mb-4 text-right">My Account</h5>
-                    <div class="d-flex flex-column justify-content-start text-right">
+                    <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
+                    <div class="d-flex flex-column justify-content-start">
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-left mr-2"></i>Home</a>
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-left mr-2"></i>Our Shop</a>
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-left mr-2"></i>Shop Detail</a>

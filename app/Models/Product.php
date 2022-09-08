@@ -58,4 +58,9 @@ class Product extends Model
     {
         return static::query()->inRandomOrder()->take(3)->get();
     }
+
+    public function presentPrice()
+    {
+        return number_format($this->price);
+    }
 }

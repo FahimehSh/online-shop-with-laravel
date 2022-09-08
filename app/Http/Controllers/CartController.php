@@ -12,17 +12,15 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $cart = Cart::query()->where('user_id', Auth::id())->first();
+
         if (filled($cart)) {
             $cart_items = $cart->cart_items;
-            return view('home.cart', compact('cart_items'));
+            $subTotalPrice = $this->getTotalPrice($cart);
+            return view('home.cart', compact('cart_items', 'subTotalPrice'));
         }
 
         return Redirect::back();
@@ -50,7 +48,7 @@ class CartController extends Controller
                 $cart->delete();
             }
 
-            return Redirect::back();
+            return back();
         }
     }
 
@@ -64,40 +62,49 @@ class CartController extends Controller
                     $cart_item = Cart_item::query()->where('product_id', $product->id)
                         ->where('cart_id', $cart->id)->first();
                     $cart_item->quantity = $cart_item->quantity + 1;
+                    $cart_item->price = $cart_item->quantity * $product->price;
                     $cart_item->save();
                 } else {
 
-                    $cart_item = new Cart_item();
-                    $cart_item->cart_id = $cart->id;
-                    $cart_item->product_id = $product->id;
-                    $cart_item->discount_id = $product->discount_id;
-                    $cart_item->sku = $product->sku;
-                    $cart_item->price = $product->price;
-                    $cart_item->quantity = 1;
-                    $cart_item->save();
+                    $this->createCartItem($cart, $product);
                 }
             } else {
                 $cart = new Cart();
                 $cart->user_id = Auth::id();
                 $cart->save();
-                $cart_item = new Cart_item();
-                $cart_item->cart_id = $cart->id;
-                $cart_item->product_id = $product->id;
-                $cart_item->discount_id = $product->discount_id;
-                $cart_item->sku = $product->sku;
-                $cart_item->price = $product->price;
-                $cart_item->quantity = $product->quantity;
-                $cart_item->save();
+                $this->createCartItem($cart, $product);
             }
         }
 
-        return Redirect::back();
+        return Redirect::route('shop');
     }
 
-
-    public function increamentProduct()
+    public static function getTotalPrice($cart)
     {
+        $totalPrice = 0;
+        foreach ($cart->cart_items as $cart_item){
+            $totalPrice += $cart_item->price;
+        }
 
+        return $totalPrice;
+    }
+
+    public function createCartItem($cart, $product)
+    {
+        $cart_item = new Cart_item();
+        $cart_item->cart_id = $cart->id;
+        $cart_item->product_id = $product->id;
+        $cart_item->discount_id = $product->discount_id;
+        $cart_item->sku = $product->sku;
+        $cart_item->price = $product->price;
+        $cart_item->quantity = 1;
+        $cart_item->save();
+    }
+
+    public static function destroy(Cart $cart)
+    {
+        $cart->cart_items()->delete();
+        $cart->delete();
     }
 
 

@@ -37,12 +37,12 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}" style="width: 80px;height: auto"
                             <td>{{$product->title}}</td>
                             <td>{{mb_substr($product->meta_title, 0 , 20). '...'}}</td>
                             <td>{{$product->brand->title}}</td>
-                            <td>{{$product->price}}</td>
+                            <td>{{$product->presentPrice()}}</td>
                             <td>{{(filled($product->discount))?$product->discount->amount:''}}</td>
                             <td>{{$product->quantity}}</td>
                             <td>
                                 <a class="btn btn-rounded btn-success text-white"
-                                   href="{{route('products.edit', ['product'=>$product->id])}}">ویرایش</a>
+                                   href="{{route('products.edit', ['product'=>$product->slug])}}">ویرایش</a>
                                 <a href="{{route('products.destroy', ['product'=>$product->id])}}"
                                    class="btn btn-rounded btn-danger"
                                    onclick="return confirm('آیا از حذف این کالا مطمئن هستید؟')">حذف</a>

@@ -1,10 +1,15 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderItemsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
@@ -32,26 +37,27 @@ Route::prefix('/shop')->namespace('shop')->group(function () {
         ->name('shop.productsInCategory');
     Route::get('/{product}', [ShopController::class, 'show'])
         ->name('show.product');
-
-
-    Route::prefix('/cart')->namespace('cart')->group(function (){
-        Route::get('/', [CartController::class, 'index'])
-            ->name('cart.items');
-        Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])
-            ->name('add.to.cart');
-        Route::get('/destroy/{product}', [CartController::class, 'deleteCartItem'])
-            ->name('destroy.cartItem');
-        Route::get('increament/{product}', [CartController::class, 'increamentProduct'])
-            ->name('increament.product');
-//        Route::get('decrement/{product}', [CartController::class, 'decreamentProduct'])
-//            ->name('decreament.product');
-    });
 });
+
+Route::get('/cart', [CartController::class, 'index'])
+    ->name('cart.items');
+Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])
+    ->name('add.to.cart');
+Route::get('/destroy/{product}', [CartController::class, 'deleteCartItem'])
+    ->name('destroy.cartItem');
+Route::get('/checkout', [CheckoutController::class, 'index'])
+    ->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'index'])
+    ->name('checkout.store');
+Route::get('/thankyou', [ConfirmationController::class, 'index'])
+    ->name('thankyou');
+Route::get('/order', [OrderController::class, 'store'])
+    ->name('order.store');
 
 
 //dashboard
 Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('', [AdminController::class, 'index'])->name('admin.index');
 
     Route::prefix('/categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])
@@ -82,12 +88,24 @@ Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function () {
         Route::get('/destroy/{product}', [ProductController::class, 'destroy'])
             ->name('products.destroy');
     });
+
+        Route::prefix('/personal-info')->group(function () {
+            Route::get('/', [AdminController::class, 'show'])
+                ->name('personal-info');
+            Route::get('/edit', [AdminController::class, 'edit'])
+                ->name('personal-info.edit');
+            Route::put('/update', [AdminController::class, 'update'])
+                ->name('personal.info.update');
+            Route::post('/store', [AddressController::class, 'store'])
+                ->name('personal-info.address.store');
+            Route::post('/update', [AddressController::class, 'update'])
+                ->name('personal-info.address.update');
+    });
 });
 
 
-Route::prefix('/profile')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('user-dashboard');
-});
+Route::get('/profile', [UserController::class, 'index'])
+    ->name('user.index');
 
 
 require __DIR__ . '/auth.php';
