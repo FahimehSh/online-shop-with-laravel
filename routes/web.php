@@ -12,6 +12,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,12 +46,16 @@ Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])
     ->name('add.to.cart');
 Route::get('/destroy/{product}', [CartController::class, 'deleteCartItem'])
     ->name('destroy.cartItem');
+
+
 Route::get('/checkout', [CheckoutController::class, 'index'])
     ->name('checkout.index');
 Route::post('/checkout', [CheckoutController::class, 'index'])
     ->name('checkout.store');
 Route::get('/thankyou', [ConfirmationController::class, 'index'])
     ->name('thankyou');
+
+
 Route::get('/order', [OrderController::class, 'store'])
     ->name('order.store');
 
@@ -87,20 +92,28 @@ Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function () {
             ->name('products.update');
         Route::get('/destroy/{product}', [ProductController::class, 'destroy'])
             ->name('products.destroy');
+        Route::get('/destroy/{product}/{file}', [ProductController::class, 'destroyFile'])
+            ->name('products.destroy.file');
     });
 
-        Route::prefix('/personal-info')->group(function () {
-            Route::get('/', [AdminController::class, 'show'])
-                ->name('personal-info');
-            Route::get('/edit', [AdminController::class, 'edit'])
-                ->name('personal-info.edit');
-            Route::put('/update', [AdminController::class, 'update'])
-                ->name('personal.info.update');
-            Route::post('/store', [AddressController::class, 'store'])
-                ->name('personal-info.address.store');
-            Route::post('/update', [AddressController::class, 'update'])
-                ->name('personal-info.address.update');
+    Route::prefix('/personal-info')->group(function () {
+        Route::get('/', [AdminController::class, 'show'])
+            ->name('personal-info');
+        Route::get('/edit', [AdminController::class, 'edit'])
+            ->name('personal-info.edit');
+        Route::put('/update', [AdminController::class, 'update'])
+            ->name('personal.info.update');
+        Route::post('/store', [AddressController::class, 'store'])
+            ->name('personal-info.address.store');
+        Route::post('/update', [AddressController::class, 'update'])
+            ->name('personal-info.address.update');
     });
+
+    Route::get('/orders', [OrderController::class, 'index'])
+        ->name('orders.index');
+
+    Route::get('/transactions', [TransactionController::class, 'index'])
+        ->name('transactions.index');
 });
 
 

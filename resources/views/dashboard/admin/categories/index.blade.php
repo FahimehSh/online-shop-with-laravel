@@ -27,7 +27,7 @@
                     @foreach($categories as $category)
                         <tr>
                             <th scope="row">{{$categories->firstItem() + $loop->index}}</th>
-                            <td><img src="{{asset('storage/uploads/'.$category->files->first()->name)}}" style="width: 80px;height: auto"></td>
+                            <td><img src="{{filled($category->files)?asset('storage/uploads/'.$category->files->first()->name):asset('dashboardStyle/dist/img/body-bg.jpg')}}" style="width: 80px;height: auto"></td>
                             <td>{{$category->title}}</td>
                             <td>{{mb_substr($category->meta_title, 0 , 20). '...'}}</td>
                             <td>

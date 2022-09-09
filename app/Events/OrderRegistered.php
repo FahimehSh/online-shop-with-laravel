@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Models\Order;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -23,10 +25,12 @@ class OrderRegistered
      */
 
     public $user;
+    public $order;
 
-    public function __construct(User $user)
+    public function __construct(User $user, Order $order)
     {
         $this->user = $user;
+        $this->order = $order;
     }
 
     /**

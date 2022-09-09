@@ -1,6 +1,6 @@
 @extends('dashboard.master')
 
-@section('page-title', 'افزودن کالای جدید')
+@section('page-title', 'ویرایش کالا')
 
 @section('sidebar-menu')
     @include('dashboard.admin.sidebar')
@@ -17,7 +17,7 @@
         </div>
     @endif
     <div class="content-header sty-one">
-        <h1 class="text-black">افزودن کالای جدید</h1>
+        <h1 class="text-black">ویرایش کالا</h1>
     </div>
     <div class="info-box">
         <div class="row">
@@ -100,7 +100,7 @@
                                                    value="{{$category->id}}"
                                                    @if(in_array($category->id, $product->categories->pluck('id')->toArray())) checked @endif>
                                             {{ $category->title }}
-                                            @if(count($category->children))
+                                            @if(filled($category->children))
                                                 <select name="child_category" class="form-control">--}}
                                                     <option value="{{null}}">زیر دسته بندی مورد نظر خود را انتخاب
                                                         کنید:
@@ -143,13 +143,32 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="exampleInputFile" class="text-black font-weight-bold">عکس های این دسته
-                                    بندی:</label>
+                                <label for="exampleInputFile" class="text-black font-weight-bold">
+                                    عکس های این کالا
+                                </label>
                                 <div>
-                                    @foreach($images as $image)
-                                        <img src="{{asset('storage/uploads/'.$image->name)}}" alt="category image"
-                                             style="width: 200px;height: auto">
-                                    @endforeach
+                                    @if(count($product->files))
+                                        <div class="row">
+                                            @foreach($images as $image)
+                                                <div>
+                                                    <div class="col-lg-3">
+                                                        <img src="{{asset('storage/uploads/'.$image->name)}}"
+                                                             alt="category image"
+                                                             style="width: 200px;height: auto">
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <a
+                                                            href="{{route('products.destroy.file', ['product'=>$product->id, 'file'=>$image->id])}}"
+                                                            class="btn btn-rounded fa fa-trash btn-danger pull-left"
+                                                            onclick="return confirm('آیا از حذف این تصویر مطمئن هستید؟')">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <p>این کالا هنوز عکسی ندارد.</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

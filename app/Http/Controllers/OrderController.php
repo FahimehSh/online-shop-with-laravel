@@ -19,7 +19,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::query()->paginate(10);
+        return view('dashboard.admin.orders.index', compact('orders'));
     }
 
     /**
@@ -59,7 +60,7 @@ class OrderController extends Controller
                     TransactionController::store($order);
 
                     $user = Auth::user();
-                    event(new OrderRegistered($user));
+                    event(new OrderRegistered($user, $order));
 
                     return Redirect::route('thankyou');
 

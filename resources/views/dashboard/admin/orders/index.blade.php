@@ -7,9 +7,6 @@
 @endsection
 
 @section('content')
-    <div class="content-header sty-one">
-        <h1 class="text-black">مدیریت دسته بندی ها</h1>
-    </div>
     <div class="info-box">
         @if($orders->count())
             <div class="table-responsive">
@@ -17,25 +14,25 @@
                     <thead class="text-white" style="background-color: darkblue">
                     <tr>
                         <th scope="col">ردیف</th>
-                        <th scope="col">عکس دسته بندی</th>
-                        <th scope="col">نام دسته بندی</th>
-                        <th scope="col">توضیحات</th>
+                        <th scope="col">نام سفارش دهنده</th>
+                        <th scope="col">مبلغ کل سفارش(تومان)</th>
+                        <th scope="col">تاریخ ثبت سفارش</th>
+                        <th scope="col">وضعیت</th>
                         <th scope="col">عملیات</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($orders as $order)
                         <tr>
-                            <th scope="row">{{$categories->firstItem() + $loop->index}}</th>
-                            <td><img src="{{asset('storage/uploads/'.$category->files->first()->name)}}" style="width: 80px;height: auto"></td>
-                            <td>{{$category->title}}</td>
-                            <td>{{mb_substr($category->meta_title, 0 , 20). '...'}}</td>
+                            <th scope="row">{{$orders->firstItem() + $loop->index}}</th>
+                            <td>{{$order->user->first_name. ' ' .$order->user->last_name}}</td>
+                            <td>{{number_format($order->total_price)}}</td>
+                            <td>{{$order->created_at}}</td>
+                            <td>{{$order->status}}</td>
                             <td>
-                                <a class="btn btn-rounded btn-success text-white"
-                                   href="{{route('categories.edit', ['category'=>$category->slug])}}">ویرایش</a>
-                                <a href="{{route('categories.destroy', ['category'=>$category->slug])}}"
+                                <a href=""
                                    class="btn btn-rounded btn-danger"
-                                   onclick="return confirm('آیا از حذف این دسته بندی مطمئن هستید؟')">حذف</a>
+                                   onclick="return confirm('آیا از حذف این سفارش مطمئن هستید؟')">حذف</a>
                             </td>
                         </tr>
                     @endforeach
@@ -43,11 +40,11 @@
                 </table>
             </div>
             <div class="row">
-                {{$categories->links()}}
+                {{$orders->links()}}
             </div>
         @else
             <div class="content-header sty-one">
-                <h4 class="text-black">دسته بندی دیگری وجود ندارد.</h4>
+                <h4 class="text-black">سفارش دیگری وجود ندارد.</h4>
             </div>
         @endif
     </div>

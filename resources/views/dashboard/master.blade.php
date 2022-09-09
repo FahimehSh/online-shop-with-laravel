@@ -113,32 +113,19 @@
                             <span class="fa fa-user-o"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>
-                            <li><a href="#"><i class="icon-envelope"></i> Inbox</a></li>
+                            <li><a href="{{route('personal-info')}}"><i class="icon-profile-male"></i>حساب کاربری</a>
+                            </li>
+                            <li><a href="#"><i class="icon-envelope"></i>لیست پیام ها</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>
+                            <li><a href="#"><i class="icon-gears"></i>تنظیمات</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                            <li><a href="{{route('logout')}}"><i class="fa fa-power-off"></i>خروج</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown messages-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
-                                class="fa fa-shopping-cart"></i>
+                    <li>
+                        <a href="{{route('cart.items')}}">
+                            <i class="fa fa-shopping-cart"></i>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">Notifications</li>
-                            <li>
-                                <ul class="menu">
-                                    <li><a href="#">
-                                            <div class="pull-left icon-circle red"><i class="icon-lightbulb"></i></div>
-                                            <h4>Alex C. Patton</h4>
-                                            <p>I've finished it! See you so...</p>
-                                            <p><span class="time">9:30 AM</span></p>
-                                        </a></li>
-                                </ul>
-                            </li>
-                            <li class="footer"><a href="#">Check all Notifications</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>
@@ -152,7 +139,7 @@
             <div class="user-panel">
                 <div class="image text-center"><img src="{{$user_pic}}" class="img-circle" alt="User Image"></div>
                 <div class="info">
-                    <p>Alexander Pierce</p>
+                    <h5 class="text-primary font-weight-bold">{{auth()->user()->first_name . ' ' . auth()->user()->last_name}}</h5>
                 </div>
             </div>
 

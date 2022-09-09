@@ -3,8 +3,9 @@
 namespace App\Providers;
 
 use App\Events\OrderRegistered;
-use App\Listeners\SendEmail;
-use App\Listeners\SendEmailOrderRegisteration;
+use App\Listeners\SendEmailOrderRegisterationToCustomer;
+use App\Listeners\SendEmailOrderRegisteredToCustomer;
+use App\Listeners\SendEmailOrderRegisteredToManager;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,7 +24,8 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         OrderRegistered::class=>[
-            SendEmailOrderRegisteration::class,
+            SendEmailOrderRegisteredToCustomer::class,
+            SendEmailOrderRegisteredToManager::class,
         ]
     ];
 

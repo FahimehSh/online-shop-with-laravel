@@ -22,7 +22,8 @@
     <div class="info-box">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post" action="{{route('categories.update', ['category'=>$category->slug])}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('categories.update', ['category'=>$category->slug])}}"
+                      enctype="multipart/form-data">
                     @csrf
                     <fieldset class="form-group">
                         <label class="text-black font-weight-bold">نام دسته بندی</label>
@@ -39,7 +40,8 @@
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب دسته بندی:</label>
                                 <select name="parent_id" class="form-control">
-                                    <option value="{{null}}">در صورتی که این دسته بندی در داخل دسته بندی دیگری قرار دارد، انتخاب کنید:
+                                    <option value="{{null}}">در صورتی که این دسته بندی در داخل دسته بندی دیگری قرار
+                                        دارد، انتخاب کنید:
                                     </option>
                                     @foreach($categories as $cat)
                                         <option
@@ -52,12 +54,17 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="exampleInputFile" class="text-black font-weight-bold">عکس های این دسته بندی:</label>
+                                <label for="exampleInputFile" class="text-black font-weight-bold">عکس های این دسته
+                                    بندی:</label>
                                 <div>
-                                    @foreach($images as $image)
-                                    <img src="{{asset('storage/uploads/'.$image->name)}}" alt="category image"
-                                         style="width: 200px;height: auto">
-                                    @endforeach
+                                    @if(filled($category->files))
+                                        @foreach($images as $image)
+                                            <img src="{{asset('storage/uploads/'.$image->name)}}" alt="category image"
+                                                 style="width: 200px;height: auto">
+                                        @endforeach
+                                    @else
+                                        <p>این دسته بندی هنوز عکسی ندارد.</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -66,7 +73,8 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="exampleInputFile" class="text-black font-weight-bold">بارگذاری عکس:</label>
-                                <input type="file" name="images[]" id="exampleInputFile" class="col-lg-6" accept="img/*" multiple>
+                                <input type="file" name="images[]" id="exampleInputFile" class="col-lg-6" accept="img/*"
+                                       multiple>
                             </div>
                         </div>
                     </div>

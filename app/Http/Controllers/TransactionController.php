@@ -16,7 +16,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::query()->paginate(10);
+        return view('dashboard.admin.transactions.index', compact('transactions'));
     }
 
     /**

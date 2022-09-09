@@ -29,21 +29,6 @@
 <body>
 <!-- Topbar Start -->
 <div class="container-fluid">
-    <div class="row bg-secondary py-1 px-xl-10">
-        <div class="col-lg-12 text-lg">
-            <div class="d-inline-flex">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
-                        Account
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button">ورود</button>
-                        <button class="dropdown-item" type="button">خروج</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row bg-light py-3 d-none d-lg-flex text-right">
         <div class="col-lg-6" style="padding-right: 0">
             <a href="{{route('main')}}" class="text-decoration-none">
@@ -74,7 +59,7 @@
         <div class="col-lg-3 d-none d-lg-block">
             <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
                href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>دسته بندی کالاها</h6>
+                <h6 class="text-dark m-0"><i class="fa fa-bars ml-2"></i>دسته بندی کالاها</h6>
                 <i class="fa fa-angle-down text-dark"></i>
             </a>
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
@@ -105,11 +90,11 @@
         <div class="col-lg-9">
             <nav class="navbar navbar-expand-lg bg-darkblue navbar-dark py-3 py-lg-0 px-0">
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav mr-auto py-0">
+                    <div class="navbar-nav ml-auto py-0">
                         <a href="{{route('main')}}" class="nav-item nav-link active">صفحه اصلی</a>
                         <a href="{{route('shop')}}" class="nav-item nav-link">فروشگاه</a>
                         <a href="detail.html" class="nav-item nav-link">بلاگ</a>
-                        <a href="contact.html" class="nav-item nav-link">تماس با ما</a>
+                        <a href="contact.html" class="nav-item nav-link">ارتباط با ما</a>
                         <a href="contact.html" class="nav-item nav-link">درباره ما</a>
                         @if(!auth()->check())
                             <a href="{{route('register')}}" class="nav-item nav-link">ثبت نام</a>
@@ -117,7 +102,7 @@
                         @endif
                         <a href="{{route('logout')}}" class="nav-item nav-link">خروج</a>
                     </div>
-                    <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
+                    <div class="navbar-nav mr-auto py-0 d-none d-lg-block">
                         <a href="" class="btn px-0">
                             <i class="fas fa-heart text-primary"></i>
                             <span class="badge text-secondary border border-secondary rounded-circle"
@@ -130,6 +115,12 @@
                                 {{filled($cart)?$cartItemsCount:0}}
                             </span>
                         </a>
+                        @auth()
+                            <a href="{{auth()->user()->is_admin == 1?route('admin.index'):route('user.index')}}"
+                               class="btn px-0 ml-3">
+                                <i class="fas fa-user text-primary"></i>
+                            </a>
+                        @endauth
                     </div>
                 </div>
             </nav>
@@ -158,19 +149,21 @@
         <div class="col-lg-8 col-md-12">
             <div class="row">
                 <div class="col-md-4 mb-5">
-                    <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
+                    <h5 class="text-secondary text-uppercase mb-4">با فروشگاه آنلاین</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-left mr-2"></i>صفحه اصلی</a>
-                        <a class="text-secondary mb-2" href="{{route('shop')}}"><i class="fa fa-angle-left mr-2"></i>فروشگاه</a>
-                        <a class="text-secondary" href="#"><i class="fa fa-angle-left mr-2"></i>ارتباط با ما</a>
+                        <a class="text-secondary mb-2" href="{{route('main')}}">صفحه اصلی</a>
+                        <a class="text-secondary mb-2" href="{{route('shop')}}">فروشگاه</a>
+                        <a class="text-secondary" href="#">ارتباط با ما</a>
+                        <a class="text-secondary" href="#">درباره ما</a>
+                        <a class="text-secondary" href="#">بلاگ</a>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
-                    <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
+                    <h5 class="text-secondary text-uppercase mb-4">راهنمای خرید</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-left mr-2"></i>Home</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-left mr-2"></i>Our Shop</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-left mr-2"></i>Shop Detail</a>
+                        <a class="text-secondary mb-2" href="#">نحوه ثبت سفارش</a>
+                        <a class="text-secondary mb-2" href="#">رویه ارسال سفارش</a>
+                        <a class="text-secondary mb-2" href="#">حریم خصوصی</a>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">

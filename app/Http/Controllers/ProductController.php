@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\File;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -53,7 +54,7 @@ class ProductController extends Controller
             'sku' => $request->sku
         ]);
 
-        if(filled($request->child_category)){
+        if (filled($request->child_category)) {
             $parent_category_id = Category::query()->find($request->child_category)->parent_id;
             $product->categories()->attach([$parent_category_id, $request->child_category]);
         }
@@ -113,7 +114,7 @@ class ProductController extends Controller
         $product->sku = $request->sku;
         $product->save();
 
-        if(filled($request->child_category)){
+        if (filled($request->child_category)) {
             $parent_category_id = Category::query()->find($request->child_category)->parent_id;
             $product->categories()->sync([$parent_category_id, $request->child_category]);
         }
@@ -142,5 +143,11 @@ class ProductController extends Controller
         $product->categories()->detach();
         $product->delete();
         return Redirect::route('products.index');
+    }
+
+    public function destroyFile(Product $product, File $file)
+    {
+        $product->files()->where('id', $file->id)->delete();
+        return back();
     }
 }

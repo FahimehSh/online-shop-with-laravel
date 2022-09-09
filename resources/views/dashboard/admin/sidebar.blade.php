@@ -21,14 +21,14 @@
     <li class="treeview"><a href="#"> <i class="fa fa-circle-o"></i> <span>سفارش ها</span> <span
                 class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
         <ul class="treeview-menu">
-            <li class="active"><a href=""><i class="fa fa-circle"></i>لیست سفارش ها</a></li>
+            <li class="active"><a href="{{route('orders.index')}}"><i class="fa fa-circle"></i>لیست سفارش ها</a></li>
             <li class="active"><a href=""><i class="fa fa-circle"></i>سفارش های من</a></li>
         </ul>
     </li>
     <li class="treeview"><a href="#"> <i class="fa fa-circle-o"></i> <span>تراکنش ها</span> <span
                 class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
         <ul class="treeview-menu">
-            <li class="active"><a href=""><i class="fa fa-circle"></i>لیست تراکنش ها</a></li>
+            <li class="active"><a href="{{route('transactions.index')}}"><i class="fa fa-circle"></i>لیست تراکنش ها</a></li>
             <li class="active"><a href=""><i class="fa fa-circle"></i>تراکنش های من</a></li>
         </ul>
     </li>
