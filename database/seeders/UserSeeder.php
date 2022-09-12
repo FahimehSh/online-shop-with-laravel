@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
 
             [
-                'first_name' => 'Fahimeh',
-                'last_name' => 'Shirdel',
+                'first_name' => 'فهیمه',
+                'last_name' => 'شیردل',
                 'discount_id' => null,
                 'email' => 'shirdel.fahimeh@gmail.com',
                 'password' => bcrypt('123456789'),
@@ -30,8 +30,8 @@ class UserSeeder extends Seeder
                 'last_login' => date('Y-m-d H:i:s'),
             ],
             [
-                'first_name' => 'Zahra',
-                'last_name' => 'Mahdavi',
+                'first_name' => 'زهرا',
+                'last_name' => 'مهدوی',
                 'discount_id' => '1',
                 'email' => 'zahraMahdavi@gmail.com',
                 'password' => bcrypt('123456789'),
@@ -41,8 +41,8 @@ class UserSeeder extends Seeder
                 'last_login' => date('Y-m-d H:i:s'),
             ],
             [
-                'first_name' => 'Sina',
-                'last_name' => 'Hoseine',
+                'first_name' => 'سینا',
+                'last_name' => 'حسینی',
                 'discount_id' => '2',
                 'email' => 'sinahsn@yahoo.com',
                 'password' => bcrypt('123456789'),

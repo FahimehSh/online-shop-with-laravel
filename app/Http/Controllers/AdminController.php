@@ -61,31 +61,23 @@ class AdminController extends Controller
      */
     public function edit()
     {
-        $data = [
-            'states' => State::all(),
-            'cities'=>City::all(),
-        ];
-
-        return view('dashboard.admin.personalInfo.edit', $data);
+        return view('dashboard.admin.personalInfo.edit');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
+
         $user = Auth::user();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
-        $user->password = $request->password;
-        if($request->has('mobile')){
-            $user->mobile = $request->mobile;
-        }
+        $user->mobile = $request->mobile;
         $user->save();
 
         if ($request->has('images')) {

@@ -45,7 +45,7 @@
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب برند:</label>
                                 <select name="brand_id" class="form-control">
-                                    <option value="{{null}}">نام برند مورد نظرتان را انتخاب کنید:
+                                    <option disabled selected value>نام برند مورد نظرتان را انتخاب کنید:
                                     </option>
                                     @foreach($brands as $brand)
                                         <option value="{{$brand->id}}">{{$brand->title}}</option>
@@ -59,7 +59,8 @@
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب فروشنده:</label>
                                 <select name="supplier_id" class="form-control">
-                                    <option value="{{null}}">نام فروشنده مورد نظرتان را انتخاب کنید:
+                                    <option disabled selected value>
+                                        نام فروشنده مورد نظرتان را انتخاب کنید:
                                     </option>
                                     @foreach($suppliers as $supplier)
                                         <option value="{{$supplier->id}}">{{$supplier->description}}</option>
@@ -73,7 +74,7 @@
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب تخفیف مورد نظر:</label>
                                 <select name="discount_id" class="form-control">
-                                    <option value="{{null}}">تخفیفی که می خواهید برای این محصول فعال شود را انتخاب کنید:
+                                    <option disabled selected value>تخفیفی که می خواهید برای این محصول فعال شود را انتخاب کنید:
                                     </option>
                                     @foreach($discounts as $discount)
                                         <option value="{{$discount->id}}">{{$discount->name}}</option>
@@ -86,16 +87,20 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب دسته بندی:</label>
-                                <ul>
                                     @foreach($firstCategories as $category)
-                                        <div class="radio">
-                                            <input type="radio" name="parent_category" id="optionsRadios1"
-                                                   value="{{$category->id}}">
-                                            {{ $category->title }}
+                                        <div class="form-group">
+                                            <div class="radio">
+                                                <input type="radio" name="parent_category"
+                                                       value="{{$category->id}}">
+                                                {{ $category->title }}
+                                            </div>
                                             @if(count($category->children))
-                                                <select name="child_category" class="form-control">--}}
-                                                    <option value="{{null}}">زیر دسته بندی مورد نظر خود را انتخاب
-                                                        کنید:
+                                                <label>
+                                                    زیر دسته بندی مورد نظر خود را انتخاب کنید:
+                                                </label>
+                                                <select name="child_category" class="form-control">
+                                                    <option disabled selected value>
+                                                        زیر دسته بندی مورد نظر خود را انتخاب کنید
                                                     </option>
                                                     @foreach($category->children as $child)
                                                         <option value="{{$child->id}}">{{$child->title}}</option>
@@ -104,7 +109,6 @@
                                             @endif
                                         </div>
                                     @endforeach
-                                </ul>
                             </div>
                         </div>
                     </div>

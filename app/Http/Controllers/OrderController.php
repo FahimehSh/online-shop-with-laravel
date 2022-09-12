@@ -48,6 +48,7 @@ class OrderController extends Controller
                 if (filled($cart->cart_items)) {
                     $order = new Order();
                     $order->user_id = Auth::id();
+                    $order->address_id = Auth::user()->addresses()->orderBy('created_at', 'desc')->first()->id;
                     $order->total_shipping = 25000;
                     $order->total_price = CartController::getTotalPrice($cart) + 25000;
                     $order->status = 'new';
@@ -57,7 +58,8 @@ class OrderController extends Controller
 
                     CartController::destroy($cart);
 
-                    TransactionController::store($order);
+                    $gateway_id = $request->gateway_id;
+                    TransactionController::store($gateway_id, $order);
 
                     $user = Auth::user();
                     event(new OrderRegistered($user, $order));

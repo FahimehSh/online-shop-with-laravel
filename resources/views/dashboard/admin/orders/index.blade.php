@@ -44,7 +44,7 @@
             </div>
         @else
             <div class="content-header sty-one">
-                <h4 class="text-black">سفارش دیگری وجود ندارد.</h4>
+                <h4 class="text-black">سفارشی ثبت نشده است.</h4>
             </div>
         @endif
     </div>

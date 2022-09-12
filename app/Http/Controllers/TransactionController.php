@@ -36,12 +36,12 @@ class TransactionController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public static function store(Order $order)
+    public static function store($gateway_id, Order $order)
     {
         $transaction = new Transaction();
         $transaction->order_id = $order->id;
         $transaction->user_id = Auth::id();
-        $transaction->gateway_id = 1;
+        $transaction->gateway_id = $gateway_id;
         $transaction->tracking_code = mt_rand(1, 999).time().mt_rand(1, 999);
         $transaction->save();
     }

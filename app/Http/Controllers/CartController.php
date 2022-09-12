@@ -20,7 +20,8 @@ class CartController extends Controller
         if (filled($cart)) {
             $cart_items = $cart->cart_items;
             $subTotalPrice = $this->getTotalPrice($cart);
-            return view('home.cart', compact('cart_items', 'subTotalPrice'));
+            $sumTotalDiscount = $this->getTotalDiscount($cart);
+            return view('home.cart', compact('cart_items', 'subTotalPrice', 'sumTotalDiscount'));
         }
 
         return Redirect::back();
@@ -76,17 +77,30 @@ class CartController extends Controller
             }
         }
 
-        return Redirect::route('shop');
+        return back();
     }
 
     public static function getTotalPrice($cart)
     {
         $totalPrice = 0;
-        foreach ($cart->cart_items as $cart_item){
+        foreach ($cart->cart_items as $cart_item) {
             $totalPrice += $cart_item->price;
         }
 
         return $totalPrice;
+    }
+
+    public static function getTotalDiscount($cart)
+    {
+        $totalDiscount = 0;
+        foreach ($cart->cart_items as $cart_item) {
+            if (filled($cart_item->discount)) {
+                $totalDiscount += $cart_item->discount->amount;
+            } else {
+                $totalDiscount = 0;
+            }
+            return $totalDiscount;
+        }
     }
 
     public function createCartItem($cart, $product)

@@ -2,8 +2,12 @@
     <li class="active">
         <a href="{{route('personal-info')}}"> <i class="fa fa-user-circle"></i> <span>حساب کاربری</span> </a>
     </li>
-    <li class="active">
-        <a href=""> <i class="fa fa-map-marker"></i> <span>آدرس ها</span> </a>
+    <li class="treeview"><a href="#"> <i class="fa fa-map-marker"></i> <span>آدرس ها</span> <span
+                class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+        <ul class="treeview-menu">
+            <li class="active"><a href="{{route('personal-info.address.index')}}"><i class="fa fa-circle"></i>لیست آدرس ها</a></li>
+            <li class="active"><a href="{{route('personal-info.address.create')}}"><i class="fa fa-circle"></i>افزودن آدرس جدید</a></li>
+        </ul>
     </li>
     <li class="active">
         <a href=""> <i class="fa fa-heart-o"></i> <span>لیست علاقه مندی ها</span> </a>
@@ -82,7 +86,7 @@
         </ul>
     </li>
     <li class="active">
-        <a href="">
+        <a href="{{route('logout')}}">
             <i class="fa fa-power-off"></i>
             <span>خروج از حساب کاربری</span>
             <span class="pull-right-container"></span>

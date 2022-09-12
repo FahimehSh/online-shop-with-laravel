@@ -56,7 +56,7 @@ Route::get('/thankyou', [ConfirmationController::class, 'index'])
     ->name('thankyou');
 
 
-Route::get('/order', [OrderController::class, 'store'])
+Route::post('/order', [OrderController::class, 'store'])
     ->name('order.store');
 
 
@@ -101,12 +101,24 @@ Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function () {
             ->name('personal-info');
         Route::get('/edit', [AdminController::class, 'edit'])
             ->name('personal-info.edit');
-        Route::put('/update', [AdminController::class, 'update'])
+        Route::post('/update', [AdminController::class, 'update'])
             ->name('personal.info.update');
-        Route::post('/store', [AddressController::class, 'store'])
-            ->name('personal-info.address.store');
-        Route::post('/update', [AddressController::class, 'update'])
-            ->name('personal-info.address.update');
+
+        Route::prefix('/addresses')->group(function () {
+            Route::get('/', [AddressController::class, 'index'])
+                ->name('personal-info.address.index');
+            Route::get('/create', [AddressController::class, 'create'])
+                ->name('personal-info.address.create');
+            Route::post('/store', [AddressController::class, 'store'])
+                ->name('personal-info.address.store');
+            Route::get('/edit/{address}', [AddressController::class, 'edit'])
+                ->name('personal-info.address.edit');
+            Route::post('/update/{address}', [AddressController::class, 'update'])
+                ->name('personal-info.address.update');
+            Route::get('/destroy/{address}', [AddressController::class, 'destroy'])
+                ->name('personal-info.address.destroy');
+        });
+
     });
 
     Route::get('/orders', [OrderController::class, 'index'])

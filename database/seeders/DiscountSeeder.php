@@ -18,13 +18,15 @@ class DiscountSeeder extends Seeder
         DB::table('discounts')->insert([
             [
                 'code' => 'ADR56J',
-                'amount' => '150000',
+                'name'=>'تخفیف بهاره',
+                'amount' => '100000',
                 'type'=>'fix',
                 'created_at' => date('Y-m-d H:i:s'),
                 'started_at' => date('2022-09-09 17:39:13'),
                 'ended_at' => date('2022-09-28 17:39:13'),
             ],[
                 'code' => 'ASR89J',
+                'name'=>'تخفیف تابستانه',
                 'amount' => '200000',
                 'type'=>'fix',
                 'created_at' => date('Y-m-d H:i:s'),
@@ -32,6 +34,7 @@ class DiscountSeeder extends Seeder
                 'ended_at' => date('2022-09-28 17:39:13'),
             ],[
                 'code' => 'JKR56J',
+                'name'=>'تخفیف پاییزه',
                 'amount' => '90000',
                 'type'=>'fix',
                 'created_at' => date('Y-m-d H:i:s'),

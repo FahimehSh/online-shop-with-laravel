@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Discount;
 use App\Models\File;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -31,7 +32,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('dashboard.admin.products.create');
+        $discounts = Discount::all();
+        return view('dashboard.admin.products.create', compact('discounts'));
     }
 
     /**
@@ -47,16 +49,17 @@ class ProductController extends Controller
             'meta_title' => $request->meta_title,
             'introduction' => $request->introduction,
             'brand_id' => $request->brand_id,
-            'supplier_id' => $request->supplier_id,
+            'supplier_id' => NULL,
             'discount_id' => $request->discount_id,
             'price' => $request->price,
             'quantity' => $request->quantity,
             'sku' => $request->sku
         ]);
 
+
         if (filled($request->child_category)) {
-            $parent_category_id = Category::query()->find($request->child_category)->parent_id;
-            $product->categories()->attach([$parent_category_id, $request->child_category]);
+//            $parent_category_id = Category::query()->find($request->child_category)->parent_id;
+            $product->categories()->attach([$request->parent_category, $request->child_category]);
         }
 
         $product->categories()->attach($request->parent_category);
@@ -114,12 +117,13 @@ class ProductController extends Controller
         $product->sku = $request->sku;
         $product->save();
 
+
         if (filled($request->child_category)) {
-            $parent_category_id = Category::query()->find($request->child_category)->parent_id;
-            $product->categories()->sync([$parent_category_id, $request->child_category]);
+            $product->categories()->sync([$request->parent_category, $request->child_category]);
+        }else{
+            $product->categories()->sync($request->parent_category);
         }
 
-        $product->categories()->sync($request->parent_category);
 
         if (filled($request->images)) {
             foreach ($request->images as $image) {

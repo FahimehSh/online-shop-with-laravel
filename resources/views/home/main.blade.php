@@ -70,10 +70,14 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="{{route('show.product',['product'=>$product->slug])}}">{{$product->title}}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5>
+                                @if(filled($product->discount))
                                 <h6 class="text-muted ml-2">
                                     <del>{{$product->presentPrice()}}</del>
                                 </h6>
+                                <h5>{{number_format($product->price - $product->discount->amount)}} تومان</h5>
+                                @else
+                                    <h5>{{$product->presentPrice()}} تومان</h5>
+                                @endif
                             </div>
                         </div>
                     </div>

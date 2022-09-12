@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle"></td>
+                            <td class="align-middle">{{(filled($cart_item->discount))?number_format($cart_item->products->price - $cart_item->discount->amount):''}}</td>
                             <td class="align-middle">
                                 <a href="{{route('destroy.cartItem', ['product'=>$cart_item->product_id])}}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
                             </td>
@@ -71,13 +71,13 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">تخفیف</h6>
-                            <h6 class="font-weight-medium"></h6>
+                            <h6 class="font-weight-medium">{{number_format($sumTotalDiscount)}}</h6>
                         </div>
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
-                            <h5>هزینه کل(تومان)</h5>
-                            <h5>{{number_format($subTotalPrice)}}</h5>
+                            <h5>پرداخت نهایی(تومان)</h5>
+                            <h5>{{number_format($subTotalPrice - $sumTotalDiscount)}}</h5>
                         </div>
                         <a href="{{route('checkout.index')}}" class="btn btn-block btn-danger font-weight-bold my-3 py-3">ادامه فرآیند خرید</a>
                     </div>

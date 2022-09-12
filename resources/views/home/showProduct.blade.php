@@ -45,7 +45,12 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                         </div>
                         <small class="pt-1">(99 دیدگاه)</small>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">{{$product->presentPrice()}} تومان</h3>
+                    @if(filled($product->discount))
+                        <del class="font-weight-bold mb-4 text-muted">{{$product->presentPrice()}} تومان</del>
+                        <h5>{{(filled($product->discount))?number_format($product->price - $product->discount->amount):''}}تومان</h5>
+                    @else
+                        <h3 class="font-weight-semi-bold mb-4">{{$product->presentPrice()}} تومان</h3>
+                    @endif
                     <p class="mb-4">
                         {{$product->meta_title}}
                     </p>
@@ -238,7 +243,8 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
 asset('storage/uploads/'.$item->files->first()->name):
 asset('dashboardStyle/dist/img/body-bg.jpg')}}" alt="">
                                 <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href="{{route('add.to.cart', ['product'=>$product->id])}}"><i
+                                    <a class="btn btn-outline-dark btn-square"
+                                       href="{{route('add.to.cart', ['product'=>$product->id])}}"><i
                                             class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                 </div>

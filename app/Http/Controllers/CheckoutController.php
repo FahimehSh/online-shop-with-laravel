@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\City;
+use App\Models\Gateway;
 use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,14 +21,21 @@ class CheckoutController extends Controller
     {
         $states = State::all();
         $cities = City::all();
-        if(Auth::check()){
+        $address = Address::query()->where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')->first();
+        $gateways = Gateway::all();
+
+        if (Auth::check()) {
             $cart = Cart::query()->where('user_id', Auth::id())->first();
-            if($cart->exists() && filled($cart->cart_items)){
+            if ($cart->exists() && filled($cart->cart_items)) {
                 $cart_items = $cart->cart_items;
                 $subTotalPrice = CartController::getTotalPrice($cart);
+                $sumTotalDiscount = CartController::getTotalDiscount($cart);
             }
         }
-        return view('home.checkout', compact( 'states', 'cities', 'cart_items', 'subTotalPrice'));
+        return view('home.checkout',
+            compact('states', 'cities', 'cart_items',
+                'subTotalPrice', 'sumTotalDiscount', 'address', 'gateways'));
     }
 
     /**
@@ -42,7 +51,7 @@ class CheckoutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,7 +62,7 @@ class CheckoutController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -64,7 +73,7 @@ class CheckoutController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -75,8 +84,8 @@ class CheckoutController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -87,7 +96,7 @@ class CheckoutController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

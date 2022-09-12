@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->foreignId('address_id');
             $table->unsignedInteger('total_tax')->nullable();
             $table->unsignedInteger('total_shipping')->nullable();
             $table->unsignedInteger('total_discount')->nullable();

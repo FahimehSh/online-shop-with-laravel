@@ -49,7 +49,7 @@
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب برند:</label>
                                 <select name="brand_id" class="form-control">
-                                    <option value="{{null}}">نام برند مورد نظرتان را انتخاب کنید:
+                                    <option disabled selected value>نام برند مورد نظرتان را انتخاب کنید:
                                     </option>
                                     @foreach($brands as $brand)
                                         <option
@@ -64,7 +64,7 @@
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب فروشنده:</label>
                                 <select name="supplier_id" class="form-control">
-                                    <option value="{{null}}">نام فروشنده مورد نظرتان را انتخاب کنید:
+                                    <option disabled selected value>نام فروشنده مورد نظرتان را انتخاب کنید:
                                     </option>
                                     @foreach($suppliers as $supplier)
                                         <option
@@ -79,7 +79,7 @@
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب تخفیف مورد نظر:</label>
                                 <select name="discount_id" class="form-control">
-                                    <option value="{{null}}">تخفیفی که می خواهید برای این محصول فعال شود را انتخاب کنید:
+                                    <option disabled selected value>تخفیفی که می خواهید برای این محصول فعال شود را انتخاب کنید:
                                     </option>
                                     @foreach($discounts as $discount)
                                         <option
@@ -102,12 +102,12 @@
                                             {{ $category->title }}
                                             @if(filled($category->children))
                                                 <select name="child_category" class="form-control">--}}
-                                                    <option value="{{null}}">زیر دسته بندی مورد نظر خود را انتخاب
-                                                        کنید:
+                                                    <option disabled selected value>
+                                                        زیر دسته بندی مورد نظر خود را انتخاب کنید:
                                                     </option>
                                                     @foreach($category->children as $child)
                                                         <option
-                                                            value="{{$child->id}}" @selected(in_array($child->id, $product->categories->pluck('id')->toArray()))>{{$child->title}}</option>
+                                                            value="{{old('child_category', $child->id)}}" @selected(in_array($child->id, $product->categories->pluck('id')->toArray()))>{{$child->title}}</option>
                                                     @endforeach
                                                 </select>
                                             @endif
@@ -121,8 +121,8 @@
                         <div class="col-lg-6">
                             <fieldset class="form-group">
                                 <label class="text-black font-weight-bold">قیمت کالا</label>
-                                <input class="form-control" id="basicInput" type="text" name="price"
-                                       value="{{old('price', $product->presentPrice())}}">
+                                <input class="form-control" id="basicInput" name="price"
+                                       value="{{old('price', number_format($product->price))}}">
                             </fieldset>
                         </div>
                         <div class="col-lg-6">

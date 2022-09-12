@@ -28,7 +28,7 @@
         </ul>
     </li>
     <li class="active">
-        <a href="">
+        <a href="{{route('logout')}}">
             <i class="fa fa-power-off"></i>
             <span>خروج</span>
             <span class="pull-right-container"></span>

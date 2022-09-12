@@ -64,6 +64,11 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <!-- Messages: style can be found in dropdown.less-->
+                    <li>
+                        <a href="{{route('main')}}">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
                     <li class="dropdown messages-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
                                 class="fa fa-envelope-o"></i>
                             <div class="notify"><span class="heartbit"></span> <span class="point"></span></div>
@@ -115,11 +120,10 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{route('personal-info')}}"><i class="icon-profile-male"></i>حساب کاربری</a>
                             </li>
-                            <li><a href="#"><i class="icon-envelope"></i>لیست پیام ها</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="icon-gears"></i>تنظیمات</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{route('logout')}}"><i class="fa fa-power-off"></i>خروج</a></li>
+                            <li><a href="#"><i class="icon-envelope pl-1"></i>لیست پیام ها</a></li>
+                            <li><a href="#"><i class="icon-gears pl-1"></i>تنظیمات</a></li>
+                            <li role="separator" class="divider pl-1"></li>
+                            <li><a href="{{route('logout')}}"><i class="fa fa-power-off pl-1"></i>خروج</a></li>
                         </ul>
                     </li>
                     <li>

@@ -36,7 +36,7 @@ asset('storage/uploads/'.$product->files->first()->name):
 asset('dashboardStyle/dist/img/body-bg.jpg')}}" style="width: 80px;height: auto"></td>
                             <td>{{$product->title}}</td>
                             <td>{{mb_substr($product->meta_title, 0 , 20). '...'}}</td>
-                            <td>{{$product->brand->title}}</td>
+                            <td>{{filled($product->brand_id)?$product->brand->title:''}}</td>
                             <td>{{$product->presentPrice()}}</td>
                             <td>{{(filled($product->discount))?$product->discount->amount:''}}</td>
                             <td>{{$product->quantity}}</td>

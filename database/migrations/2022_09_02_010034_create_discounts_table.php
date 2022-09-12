@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('code')->nullable();
             $table->string('name')->nullable();
             $table->string('datail')->nullable();
-            $table->integer('amount');
+            $table->unsignedInteger('amount');
             $table->enum('type', ['percent', 'fix']);
             $table->boolean('active')->default(0);
             $table->timestamps();

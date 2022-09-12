@@ -37,7 +37,7 @@
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب دسته بندی:</label>
                                 <select name="parent_id" value="{{old('parent_id')}}" class="form-control">
-                                    <option value="{{null}}">در صورتی که این دسته بندی در داخل دسته بندی دیگری قرار دارد، انتخاب کنید:
+                                    <option disabled selected value>در صورتی که این دسته بندی در داخل دسته بندی دیگری قرار دارد، انتخاب کنید:
                                     </option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->title}}</option>

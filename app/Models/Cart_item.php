@@ -18,4 +18,11 @@ class Cart_item extends Model
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
+
+    public function discount()
+    {
+        return $this->belongsTo(Discount::class);
+    }
+
+
 }

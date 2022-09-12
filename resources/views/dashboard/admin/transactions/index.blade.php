@@ -48,7 +48,7 @@
             </div>
         @else
             <div class="content-header sty-one">
-                <h4 class="text-black">تراکنش دیگری وجود ندارد.</h4>
+                <h4 class="text-black">هیچ تراکنشی ثبت نشده است.</h4>
             </div>
         @endif
     </div>

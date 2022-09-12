@@ -13,4 +13,14 @@ class Discount extends Model
     {
         return static::all();
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function cart_items()
+    {
+        return $this->belongsToMany(Cart_item::class);
+    }
 }

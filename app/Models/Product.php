@@ -54,6 +54,11 @@ class Product extends Model
         return $this->hasMany(Cart_item::class);
     }
 
+    public function discount()
+    {
+        return $this->belongsTo(Discount::class);
+    }
+
     public static function getHeaderProducts()
     {
         return static::query()->inRandomOrder()->take(3)->get();

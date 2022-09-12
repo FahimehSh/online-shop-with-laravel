@@ -86,7 +86,7 @@ class User extends Authenticatable
                 $name = $user->files->first()->name;
                 $user_pic = Storage::url($path.'/'.$name);
             } else {
-                $user_pic = asset('dashboardStyle/dist/img/img1.jpg');
+                $user_pic = asset('dashboardStyle/dist/img/body-bg.jpg');
             }
             return $user_pic;
         }

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('introduction')->nullable();
             $table->string('slug');
             $table->string('sku')->nullable();
-            $table->unsignedBigInteger('price');
+            $table->unsignedInteger('price');
             $table->unsignedInteger('rating')->nullable();
             $table->unsignedInteger('quantity')->nullable();
             $table->boolean('is_available')->default(0);
