@@ -94,8 +94,10 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                 class="bg-secondary pr-3">دسته بندی ها</span></h2>
         <div class="row px-xl-5 pb-3">
             @foreach($firstCategories as $category)
+                @if(filled($category->children))
+                @foreach($category->children as $child)
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                    <a class="text-decoration-none" href="{{route('shop.productsInCategory', ['slug'=>$category->slug])}}">
+                    <a class="text-decoration-none" href="{{route('shop.productsInCategory', ['slug'=>$child->slug])}}">
                         <div class="cat-item d-flex align-items-center mb-4">
                             <div class="overflow-hidden" style="width: 100px; height: 100px;">
                                 <img class="img-fluid"
@@ -104,11 +106,13 @@ asset('storage/uploads/'.$category->files->first()->name):
 asset('dashboardStyle/dist/img/body-bg.jpg')}}" alt="">
                             </div>
                             <div class="flex-fill pl-3">
-                                <h6>{{$category->title}}</h6>
+                                <h6>{{$child->title}}</h6>
                             </div>
                         </div>
                     </a>
                 </div>
+                @endforeach
+                @endif
             @endforeach
         </div>
     </div>

@@ -38,10 +38,58 @@
                     <div class="col-lg-12">
                         <fieldset class="form-group">
                             <label class="text-black font-weight-bold">معرفی محصول</label>
-                            <textarea name="introduction" class="form-control" id="placeTextarea" rows="5"
-                                      placeholder="معرفی محصول ...">
-                                "{{old('introduction', $product->introduction)}}"
+                            <textarea name="introduction" class="form-control" rows="5"
+                                      placeholder="معرفی محصول ...">"{{old('introduction', $product->introduction)}}"
                             </textarea>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                        <fieldset class="form-group">
+                            <label class="text-black font-weight-bold">افزودن ویژگی ها:</label>
+                            <div class="table-responsive col-lg-6">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">ردیف</th>
+                                        <th>نام ویژگی</th>
+                                        <th>مقدار ویژگی</th>
+                                        <th>عملیات</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @for($i = 0; $i <= count($product->attributes) + 2; $i ++ )
+                                        <tr>
+                                            <td>{{$i + 1}}</td>
+                                            <td>
+                                                <input
+                                                    @if($i < count($product->attributes))
+                                                        value="{{$product->attributes[$i]->attribute_name}}"
+                                                    @endif
+                                                    class="form-control" type="text" name="attribute_names[]">
+                                            </td>
+                                            <td>
+                                                <input
+                                                    @if($i < count($product->attributes))
+                                                        value="{{$product->attributes[$i]->attribute_value}}"
+                                                    @endif
+                                                    class="form-control" type="text" name="attribute_values[]">
+                                            </td>
+                                            <td>
+                                                @if($i < count($product->attributes))
+                                                    <a href="{{route('attributes.destroy.attribute', ['attribute'=>$product->attributes[$i]->id])}}"
+                                                       class="btn btn-rounded btn-danger"
+                                                       onclick="return confirm('آیا از حذف این ویژگی مطمئن هستید؟')">حذف</a>
+                                                    {{--                                                @elseif($i >= count($product->attributes))--}}
+                                                    {{--                                                    <a href=""
+                                                    {{--                                                       class="btn btn-rounded btn-success"--}}
+                                                    {{--                                                       onclick="return confirm('آیا از افزودن این ویژگی مطمئن هستید؟')">افزودن</a>--}}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endfor
+                                    </tbody>
+                                </table>
+                            </div>
                         </fieldset>
                     </div>
                     <div class="form-group">
@@ -79,7 +127,8 @@
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب تخفیف مورد نظر:</label>
                                 <select name="discount_id" class="form-control">
-                                    <option disabled selected value>تخفیفی که می خواهید برای این محصول فعال شود را انتخاب کنید:
+                                    <option disabled selected value>تخفیفی که می خواهید برای این محصول فعال شود را
+                                        انتخاب کنید:
                                     </option>
                                     @foreach($discounts as $discount)
                                         <option
@@ -179,6 +228,19 @@
                                 <label for="exampleInputFile" class="text-black font-weight-bold">بارگذاری عکس:</label>
                                 <input type="file" name="images[]" id="exampleInputFile" class="col-lg-6" accept="img/*"
                                        multiple>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="text-black font-weight-bold">آیا کالا در سایت قابل دسترس باشد:</label>
+                                <label for="optionsRadios1" class="text-black font-weight-bold">بله</label>
+                                <input type="radio" name="is_available" id="optionsRadios1" value="1"
+                                       @if($product->is_available == 1) checked @endif>
+                                <label for="optionsRadios2" class="text-black font-weight-bold">خیر</label>
+                                <input type="radio" name="is_available" id="optionsRadios2" value="0"
+                                       @if($product->is_available == 0) checked @endif>
                             </div>
                         </div>
                     </div>

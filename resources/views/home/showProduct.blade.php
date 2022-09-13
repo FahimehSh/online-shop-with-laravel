@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-fluid pb-5">
-        <div class="row px-xl-5">
+        <div class="row">
             @if(!auth()->check())
                 <p>
                     برای ثبت کالا در سبد خرید و یا ثبت سفارش باید ابتدا وارد سایت شوید.
@@ -12,6 +12,8 @@
                     <a class="text-danger" href="{{route('register')}}">ثبت نام</a>
                 </p>
             @endif
+        </div>
+        <div class="row  px-xl-5">
             <div class="col-lg-5 mb-30">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner bg-light">
@@ -47,7 +49,8 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                     </div>
                     @if(filled($product->discount))
                         <del class="font-weight-bold mb-4 text-muted">{{$product->presentPrice()}} تومان</del>
-                        <h5>{{(filled($product->discount))?number_format($product->price - $product->discount->amount):''}}تومان</h5>
+                        <h5>{{(filled($product->discount))?number_format($product->price - $product->discount->amount):''}}
+                            تومان</h5>
                     @else
                         <h3 class="font-weight-semi-bold mb-4">{{$product->presentPrice()}} تومان</h3>
                     @endif
@@ -55,7 +58,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                         {{$product->meta_title}}
                     </p>
                     <div class="d-flex mb-3">
-                        <strong class="text-dark mr-3">Sizes:</strong>
+                        <strong class="text-dark mr-3">سایزها:</strong>
                         <form>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" class="custom-control-input" id="size-1" name="size">
@@ -64,11 +67,11 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                         </form>
                     </div>
                     <div class="d-flex mb-4">
-                        <strong class="text-dark mr-3">Colors:</strong>
+                        <strong class="text-dark mr-3">رنگ ها:</strong>
                         <form>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" class="custom-control-input" id="color-1" name="color">
-                                <label class="custom-control-label" for="color-1">Black</label>
+                                <label class="custom-control-label" for="color-1">صورتی</label>
                             </div>
                         </form>
                     </div>
@@ -137,34 +140,11 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                             <div class="row">
                                 <div class="col-md-6">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0">
-                                            Sit erat duo lorem duo ea consetetur, et eirmod takimata.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Duo amet accusam eirmod nonumy stet et et stet eirmod.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0">
-                                            Sit erat duo lorem duo ea consetetur, et eirmod takimata.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Duo amet accusam eirmod nonumy stet et et stet eirmod.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
-                                        </li>
+                                        @foreach($product->attributes as $attribute)
+                                            <li class="list-group-item px-0">
+                                                {{$attribute->attribute_name. ': ' .$attribute->attribute_value}}
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

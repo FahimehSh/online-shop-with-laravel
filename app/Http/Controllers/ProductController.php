@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Http\Requests\Product\StoreProductRequest;
 use App\Models\Discount;
 use App\Models\File;
 use App\Models\Product;
@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         $data = [
-            'products' => Product::query()->paginate(10),
+            'products' => Product::query()->where('is_available', 1)->paginate(10),
         ];
 
         return view('dashboard.admin.products.index', $data);
@@ -42,7 +42,7 @@ class ProductController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         $product = Product::create([
             'title' => $request->title,
@@ -53,16 +53,19 @@ class ProductController extends Controller
             'discount_id' => $request->discount_id,
             'price' => $request->price,
             'quantity' => $request->quantity,
-            'sku' => $request->sku
+            'sku' => $request->sku,
+            'is_available' => $request->is_available,
         ]);
+
+        AttributeController::store($request, $product);
 
 
         if (filled($request->child_category)) {
-//            $parent_category_id = Category::query()->find($request->child_category)->parent_id;
             $product->categories()->attach([$request->parent_category, $request->child_category]);
+        } else {
+            $product->categories()->attach($request->parent_category);
         }
 
-        $product->categories()->attach($request->parent_category);
 
         if (filled($request->images)) {
             foreach ($request->images as $image) {
@@ -115,12 +118,15 @@ class ProductController extends Controller
         $product->discount_id = $request->discount_id;
         $product->price = $request->price;
         $product->sku = $request->sku;
+        $product->is_available = $request->is_available;
         $product->save();
+
+        AttributeController::update($request, $product);
 
 
         if (filled($request->child_category)) {
             $product->categories()->sync([$request->parent_category, $request->child_category]);
-        }else{
+        } else {
             $product->categories()->sync($request->parent_category);
         }
 
@@ -145,6 +151,7 @@ class ProductController extends Controller
     {
         $product->files()->delete();
         $product->categories()->detach();
+        $product->attributes()->delete();
         $product->delete();
         return Redirect::route('products.index');
     }

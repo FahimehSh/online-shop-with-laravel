@@ -15,7 +15,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('created_at')->paginate(12);
+        $products = Product::orderBy('created_at')->where('is_available', 1)->paginate(12);
 
 
         return view('home.shop', compact('products'));
@@ -24,8 +24,8 @@ class ShopController extends Controller
 
     public function show($slug)
     {
-        $product = Product::query()->where('slug', $slug)->firstOrFail();
-        $mightAlsoLike = Product::query()->where('slug', '!=', $product->slug)
+        $product = Product::query()->where('slug', $slug)->where('is_available', 1)->firstOrFail();
+        $mightAlsoLike = Product::query()->where('is_available', 1)->where('slug', '!=', $product->slug)
             ->inRandomOrder()->take(4)->get();
         return view('home.showProduct', compact('product', 'mightAlsoLike'));
     }
@@ -34,7 +34,7 @@ class ShopController extends Controller
     public function getListProductsInCategory($slug)
     {
         $category = Category::where('slug', $slug)->first();
-        $listProductsInCategory = $category->products()->orderBy('created_at')->paginate(12);
+        $listProductsInCategory = $category->products()->where('is_available', 1)->orderBy('created_at')->paginate(12);
         return view('home.productsInCategory', compact('listProductsInCategory', 'category'));
     }
 

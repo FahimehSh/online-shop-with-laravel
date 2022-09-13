@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             ProductSeeder::class,
             GatewaySeeder::class,
+            AttributeSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

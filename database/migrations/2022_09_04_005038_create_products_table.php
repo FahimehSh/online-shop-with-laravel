@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->unsignedInteger('price');
             $table->unsignedInteger('rating')->nullable();
-            $table->unsignedInteger('quantity')->nullable();
+            $table->unsignedInteger('quantity');
             $table->boolean('is_available')->default(0);
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

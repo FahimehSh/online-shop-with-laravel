@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
@@ -40,28 +41,30 @@ Route::prefix('/shop')->namespace('shop')->group(function () {
         ->name('show.product');
 });
 
-Route::get('/cart', [CartController::class, 'index'])
-    ->name('cart.items');
-Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])
-    ->name('add.to.cart');
-Route::get('/destroy/{product}', [CartController::class, 'deleteCartItem'])
-    ->name('destroy.cartItem');
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])
+        ->name('cart.items');
+    Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])
+        ->name('add.to.cart');
+    Route::get('/destroy/{product}', [CartController::class, 'deleteCartItem'])
+        ->name('destroy.cartItem');
 
 
-Route::get('/checkout', [CheckoutController::class, 'index'])
-    ->name('checkout.index');
-Route::post('/checkout', [CheckoutController::class, 'index'])
-    ->name('checkout.store');
-Route::get('/thankyou', [ConfirmationController::class, 'index'])
-    ->name('thankyou');
+    Route::get('/checkout', [CheckoutController::class, 'index'])
+        ->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'index'])
+        ->name('checkout.store');
+    Route::get('/thankyou', [ConfirmationController::class, 'index'])
+        ->name('thankyou');
 
 
-Route::post('/order', [OrderController::class, 'store'])
-    ->name('order.store');
+    Route::post('/order', [OrderController::class, 'store'])
+        ->name('order.store');
+});
 
 
 //dashboard
-Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function () {
+Route::prefix('/dashboard')->namespace('admin-dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('admin.index');
 
     Route::prefix('/categories')->group(function () {
@@ -95,6 +98,9 @@ Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function () {
         Route::get('/destroy/{product}/{file}', [ProductController::class, 'destroyFile'])
             ->name('products.destroy.file');
     });
+
+    Route::get('/destroy/{attribute}', [AttributeController::class, 'destroy'])
+        ->name('attributes.destroy.attribute');
 
     Route::prefix('/personal-info')->group(function () {
         Route::get('/', [AdminController::class, 'show'])
@@ -130,7 +136,7 @@ Route::prefix('/dashboard')->namespace('admin-dashboard')->group(function () {
 
 
 Route::get('/profile', [UserController::class, 'index'])
-    ->name('user.index');
+    ->name('user.index')->middleware('auth');
 
 
 require __DIR__ . '/auth.php';

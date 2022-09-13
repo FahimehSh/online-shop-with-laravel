@@ -25,6 +25,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-یک',
                 'price' => 350000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 
@@ -38,6 +39,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-دو',
                 'price' => 800000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 
@@ -51,6 +53,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-سه',
                 'price' => 570000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 
@@ -64,6 +67,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-چهار',
                 'price' => 210000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 
@@ -77,6 +81,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-پنج',
                 'price' => 5400000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 
@@ -90,6 +95,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-شش',
                 'price' => 980000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 
@@ -103,6 +109,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-هفت',
                 'price' => 150000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 
@@ -116,10 +123,11 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-هشت',
                 'price' => 230000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 
-            ],[
+            ], [
                 'brand_id' => 4,
                 'discount_id' => 1,
                 'title' => 'کالای نه',
@@ -128,6 +136,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-نه',
                 'price' => 150000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 
@@ -141,6 +150,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-ده',
                 'price' => 230000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 
@@ -154,6 +164,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'کالای-یازده',
                 'price' => 178000,
                 'quantity' => 25,
+                'is_available' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
 

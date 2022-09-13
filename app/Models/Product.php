@@ -59,9 +59,14 @@ class Product extends Model
         return $this->belongsTo(Discount::class);
     }
 
+    public function attributes()
+    {
+        return $this->hasMany(Attribute::class);
+    }
+
     public static function getHeaderProducts()
     {
-        return static::query()->inRandomOrder()->take(3)->get();
+        return static::query()->where('is_available',1)->inRandomOrder()->take(3)->get();
     }
 
     public function presentPrice()
