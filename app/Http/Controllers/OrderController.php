@@ -126,7 +126,7 @@ class OrderController extends Controller
             $order_item->user_id = Auth::id();
             $order_item->discount_id = $cart_item->discount_id;
             $order_item->sku = $cart_item->sku;
-            $order_item->price = $cart_item->products->price;
+            $order_item->price = $cart_item->product->price;
             $order_item->quantity = $cart_item->quantity;
             $order_item->total_price = $cart_item->price;
             $order_item->save();

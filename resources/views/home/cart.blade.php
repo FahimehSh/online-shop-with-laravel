@@ -22,9 +22,9 @@
                     @foreach($cart_items as $cart_item)
                         <tr>
                             <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;">
-                                {{$cart_item->products->title}}
+                                {{$cart_item->product->title}}
                             </td>
-                            <td class="align-middle">{{number_format($cart_item->products->price)}}</td>
+                            <td class="align-middle">{{number_format($cart_item->product->price)}}</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
