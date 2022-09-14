@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">{{(filled($cart_item->discount))?number_format($cart_item->products->price - $cart_item->discount->amount):''}}</td>
+                            <td class="align-middle">{{(filled($cart_item->discount))?number_format($cart_item->product->price - $cart_item->discount->amount):''}}</td>
                             <td class="align-middle">
                                 <a href="{{route('destroy.cartItem', ['product'=>$cart_item->product_id])}}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
                             </td>
