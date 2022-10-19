@@ -19,6 +19,11 @@ class Product extends Model
         ];
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     protected $fillable = [
         'brand_id',
         'supplier_id',
@@ -66,7 +71,7 @@ class Product extends Model
 
     public static function getHeaderProducts()
     {
-        return static::query()->where('is_available',1)->inRandomOrder()->take(3)->get();
+        return static::query()->where('is_available', 1)->inRandomOrder()->take(3)->get();
     }
 
     public function presentPrice()

@@ -50,7 +50,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                                          alt="">
                                     <div class="product-action">
                                         <a class="btn btn-outline-dark btn-square add-to-cart"
-                                           href="{{route('add.to.cart', ['product'=>$product->id])}}"
+                                           href="{{route('add.to.cart', ['product'=>$product->slug])}}"
                                            data-id="{{$product->id}}" data-name="{{$product->title}}"
                                            data-price="{{$product->presentPrice()}}">
                                             <i class="fa fa-shopping-cart"></i>

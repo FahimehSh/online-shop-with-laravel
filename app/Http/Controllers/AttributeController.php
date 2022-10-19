@@ -41,7 +41,7 @@ class AttributeController extends Controller
         $attr_values = $request->attribute_values;
 
         if (filled($attr_names) && filled($attr_values) && count($attr_names) == count($attr_values)) {
-            for ($i = 0; $i < count($attr_names); $i++) {
+            for ($i = 1; $i <= count($attr_names); $i++) {
                 if ($attr_names[$i] != null) {
                     $attribute = new Attribute();
                     $attribute->product_id = $product->id;

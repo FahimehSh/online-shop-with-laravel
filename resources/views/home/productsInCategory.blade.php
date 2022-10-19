@@ -46,7 +46,7 @@ asset('storage/uploads/'.$product->files->first()->name):
 asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                                          alt="">
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square" href=""><i
+                                        <a class="btn btn-outline-dark btn-square" href="{{route('add.to.cart', ['product'=>$product->slug])}}"><i
                                                 class="fa fa-shopping-cart"></i></a>
                                         <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                     </div>

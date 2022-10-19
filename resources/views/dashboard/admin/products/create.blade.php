@@ -57,10 +57,10 @@
                                         <tr>
                                             <td>{{$i}}</td>
                                             <td>
-                                                <input class="form-control" type="text" name="attribute_names[]">
+                                                <input class="form-control" type="text" name="attribute_names[{{$i}}]">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="text" name="attribute_values[]">
+                                                <input class="form-control" type="text" name="attribute_values[{{$i}}]">
                                             </td>
                                         </tr>
                                     @endfor

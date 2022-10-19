@@ -60,4 +60,9 @@ class Category extends Model
     {
         return $this->morphedByMany(Product::class, 'categorrable');
     }
+
+    public function articles()
+    {
+        return $this->morphedByMany(Article::class, 'categorrable');
+    }
 }

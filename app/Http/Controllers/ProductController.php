@@ -93,9 +93,8 @@ class ProductController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit(Product $product)
     {
-        $product = Product::query()->where('slug', $slug)->firstOrFail();
         $images = $product->files()->get();
         return view('dashboard.admin.products.edit', compact('product', 'images'));
     }

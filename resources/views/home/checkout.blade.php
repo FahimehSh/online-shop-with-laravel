@@ -134,7 +134,9 @@
                     </h5>
                     <div class="bg-light p-30">
 
-                        <form action="{{route('personal-info.address.store')}}" method="post">
+                        <form
+                            action="{{auth()->user()->is_admin == 1?route('personal-info.address.store'):route('user.personal-info.address.store')}}"
+                            method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 form-group">

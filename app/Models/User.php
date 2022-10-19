@@ -77,6 +77,23 @@ class User extends Authenticatable
         return $this->morphMany(File::class, 'fileable');
     }
 
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+//Comments that are posted on each user's page.
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+//Comments written by the user
+    public function createdComments()
+    {
+        return $this->hasMany(Comment::class)->withPivot('created_at');
+    }
+
     public static function getUserImage()
     {
         if (Auth::user()) {
@@ -84,7 +101,7 @@ class User extends Authenticatable
             if ($user->files->first() != '' && $user->files->first() != null) {
                 $path = $user->files->first()->path;
                 $name = $user->files->first()->name;
-                $user_pic = Storage::url($path.'/'.$name);
+                $user_pic = Storage::url($path . '/' . $name);
             } else {
                 $user_pic = asset('dashboardStyle/dist/img/body-bg.jpg');
             }

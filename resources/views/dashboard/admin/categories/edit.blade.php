@@ -40,12 +40,16 @@
                             <div class="col-lg-12">
                                 <label class="text-black font-weight-bold">انتخاب دسته بندی:</label>
                                 <select name="parent_id" class="form-control">
-                                    <option disabled selected value>در صورتی که این دسته بندی در داخل دسته بندی دیگری قرار
+                                    <option disabled selected value>در صورتی که این دسته بندی در داخل دسته بندی دیگری
+                                        قرار
                                         دارد، انتخاب کنید:
                                     </option>
                                     @foreach($categories as $cat)
-                                        <option
-                                            value="{{$cat->id}}" @selected($category->parent_id==$cat->id)>{{$cat->title}}</option>
+                                        @if($cat->id != $category->id)
+                                            <option
+                                                value="{{$cat->id}}" @selected($category->parent_id==$cat->id)>{{$cat->title}}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>

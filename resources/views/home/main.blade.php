@@ -62,7 +62,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                                  alt="">
                             <div class="product-action">
                                 <a class="btn btn-outline-dark btn-square"
-                                   href="{{route('add.to.cart', ['product'=>$product->id])}}"><i
+                                   href="{{route('add.to.cart', ['product'=>$product->slug])}}"><i
                                         class="fa fa-shopping-cart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             </div>
@@ -102,7 +102,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                             <div class="overflow-hidden" style="width: 100px; height: 100px;">
                                 <img class="img-fluid"
                                      src="{{filled($category->files)?
-asset('storage/uploads/'.$category->files->first()->name):
+asset('storage/uploads/'.$child->files->first()->name):
 asset('dashboardStyle/dist/img/body-bg.jpg')}}" alt="">
                             </div>
                             <div class="flex-fill pl-3">

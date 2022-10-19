@@ -35,15 +35,15 @@
 <div class="wrapper boxed-wrapper">
     <header class="main-header">
         <!-- Logo -->
-        <a href="{{route('main')}}" class="logo blue-bg" style="background-color: gold">
+        <a href="{{route('main')}}" class="logo blue-bg" style="background-color: MistyRose">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><img src="dist/img/logo-n.png" alt=""></span>
+            <span class="logo-mini"><img src="" alt=""></span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg">فروشگاه آنلاین</span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar blue-bg navbar-static-top" style="background-color: darkblue">
+        <nav class="navbar blue-bg navbar-static-top" style="background-color: Silver">
             <!-- Sidebar toggle button-->
             <ul class="nav navbar-nav pull-left">
                 <li><a class="sidebar-toggle" data-toggle="push-menu" href=""></a></li>
@@ -52,12 +52,12 @@
                 <form action="#" method="get" class="search-form">
                     <div class="input-group">
             <span class="input-group-btn">
-            <button type="submit" name="search" id="search-btn" class="btn btn-flat" style="background-color: Gold">
+            <button type="submit" name="search" id="search-btn" class="btn btn-flat" style="background-color: MistyRose">
                 <i class="fa fa-search text-black"></i>
             </button>
             </span>
-                        <input name="search" class="form-control" placeholder="Search..." type="text"
-                               style="background-color: Gold">
+                        <input name="search" class="form-control" placeholder="جستجو..." type="text"
+                               style="background-color: MistyRose">
                     </div>
                 </form>
                 <!-- search form --> </div>
@@ -78,7 +78,7 @@
                             <li>
                                 <ul class="menu">
                                     <li><a href="#">
-                                            <div class="pull-left"><img src="dist/img/img1.jpg" class="img-circle"
+                                            <div class="pull-left"><img src="" class="img-circle"
                                                                         alt="User Image"> <span
                                                     class="profile-status online pull-right"></span></div>
                                             <h4>Alex C. Patton</h4>

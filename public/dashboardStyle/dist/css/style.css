@@ -815,7 +815,7 @@ ul.fa-ul{
 	width: 100%;
 	padding: 20px 10px;
 	overflow: hidden;
-	background: url('../img/user-bg.jpg') no-repeat left top;
+	background: url('../img/body-bg.jpg') no-repeat left top;
 }
 .user-panel:before, .user-panel:after {
 	content: " ";
@@ -3859,7 +3859,7 @@ table.text-center, table.text-center td, table.text-center th {
 .user-profile-box{
 	padding:60px 20px 50px 20px;
 	border-radius:3px;
-	background:url(../img/user-bg.jpg) no-repeat center top;
+	background:url(../img/body-bg.jpg) no-repeat center top;
 }
 .widget-user .widget-user-username {
 	margin-top: 0;

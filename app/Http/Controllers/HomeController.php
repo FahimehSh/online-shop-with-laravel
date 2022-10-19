@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\OrderRegistered;
+use App\Models\Article;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
@@ -87,5 +88,26 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $products = Product::query()->where(function ($query) use ($search) {
+            $query->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('meta_title', 'LIKE', "%{$search}%")
+                ->orWhere('introduction', 'LIKE', "%{$search}%");
+        })->get();
+
+        $articles = Article::query()
+            ->where('is_confirm', 1)
+            ->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('short_content', 'LIKE', "%{$search}%")
+                    ->orWhere('content', 'LIKE', "%{$search}%");
+            })->get();
+
+        return view('home.search', compact('products', 'articles'));
     }
 }

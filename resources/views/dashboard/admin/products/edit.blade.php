@@ -22,7 +22,7 @@
     <div class="info-box">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post" action="{{route('products.update', ['product'=>$product->id])}}"
+                <form method="post" action="{{route('products.update', ['product'=>$product->slug])}}"
                       enctype="multipart/form-data">
                     @csrf
                     <fieldset class="form-group">
@@ -65,14 +65,14 @@
                                                     @if($i < count($product->attributes))
                                                         value="{{$product->attributes[$i]->attribute_name}}"
                                                     @endif
-                                                    class="form-control" type="text" name="attribute_names[]">
+                                                    class="form-control" type="text" name="attribute_names[{{$i}}]">
                                             </td>
                                             <td>
                                                 <input
                                                     @if($i < count($product->attributes))
                                                         value="{{$product->attributes[$i]->attribute_value}}"
                                                     @endif
-                                                    class="form-control" type="text" name="attribute_values[]">
+                                                    class="form-control" type="text" name="attribute_values[{{$i}}]">
                                             </td>
                                             <td>
                                                 @if($i < count($product->attributes))
@@ -171,7 +171,7 @@
                             <fieldset class="form-group">
                                 <label class="text-black font-weight-bold">قیمت کالا</label>
                                 <input class="form-control" id="basicInput" name="price"
-                                       value="{{old('price', number_format($product->price))}}">
+                                       value="{{old('price', $product->price)}}">
                             </fieldset>
                         </div>
                         <div class="col-lg-6">
@@ -207,7 +207,7 @@
                                                     </div>
                                                     <div class="mt-2">
                                                         <a
-                                                            href="{{route('products.destroy.file', ['product'=>$product->id, 'file'=>$image->id])}}"
+                                                            href="{{route('products.destroy.file', ['product'=>$product->slug, 'file'=>$image->id])}}"
                                                             class="btn btn-rounded fa fa-trash btn-danger pull-left"
                                                             onclick="return confirm('آیا از حذف این تصویر مطمئن هستید؟')">
                                                         </a>

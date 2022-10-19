@@ -10,7 +10,6 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderItemsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TransactionController;
@@ -40,6 +39,8 @@ Route::prefix('/shop')->namespace('shop')->group(function () {
     Route::get('/{product}', [ShopController::class, 'show'])
         ->name('show.product');
 });
+
+Route::post('/search', [HomeController::class, 'search'])->name('home.search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])
@@ -134,6 +135,24 @@ Route::prefix('/dashboard')->namespace('admin-dashboard')->middleware(['auth', '
         ->name('transactions.index');
 });
 
+
+
+Route::prefix('/profile')->namespace('user')->middleware('auth')->group(function (){
+    Route::prefix('/addresses')->group(function () {
+//        Route::get('/', [AddressController::class, 'index'])
+//            ->name('personal-info.address.index');
+//        Route::get('/create', [AddressController::class, 'create'])
+//            ->name('personal-info.address.create');
+        Route::post('/store', [AddressController::class, 'store'])
+            ->name('user.personal-info.address.store');
+//        Route::get('/edit/{address}', [AddressController::class, 'edit'])
+//            ->name('personal-info.address.edit');
+//        Route::post('/update/{address}', [AddressController::class, 'update'])
+//            ->name('personal-info.address.update');
+//        Route::get('/destroy/{address}', [AddressController::class, 'destroy'])
+//            ->name('personal-info.address.destroy');
+    });
+});
 
 Route::get('/profile', [UserController::class, 'index'])
     ->name('user.index')->middleware('auth');
