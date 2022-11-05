@@ -2,6 +2,10 @@
 
 @section('page-title', 'ویرایش پروفایل')
 
+@section('styles')
+    <link rel="stylesheet" href="https://babakhani.github.io/PersianWebToolkit/beta/lib/persian-datepicker/dist/css/persian-datepicker.css"/>
+@endsection
+
 @section('sidebar-menu')
     @include('dashboard.admin.sidebar')
 @endsection
@@ -57,6 +61,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-md-12">تاریخ تولد</label>
+                                        <div class="col-md-6">
+                                            <input name="birth_date"
+                                                   value="{{old('birth_date', auth()->user()->birth_date)}}"
+                                                   class="form-control form-control-line observer-example"
+                                                   type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="example-email" class="col-md-12">رایانامه</label>
                                         <div class="col-md-12">
                                             <input name="email" value="{{old('email', auth()->user()->email)}}"
@@ -86,3 +99,21 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://babakhani.github.io/PersianWebToolkit/beta/lib/persian-date/dist/persian-date.js"></script>
+    <script
+        src="https://babakhani.github.io/PersianWebToolkit/beta/lib/persian-datepicker/dist/js/persian-datepicker.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.observer-example').persianDatepicker({
+                observer: true,
+                format: 'YYYY/MM/DD',
+                altField: '.observer-example-alt'
+            });
+        });
+    </script>
+@endsection
+

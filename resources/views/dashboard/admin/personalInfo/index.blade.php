@@ -25,6 +25,11 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                         خانوادگی</strong>
                     <p class="text-muted">{{auth()->user()->first_name . ' ' . auth()->user()->last_name}}</p>
                     <hr>
+                    @if(!is_null(auth()->user()->birth_date))
+                        <strong><i class="fa fa-user margin-r-5" style="margin-left: 10px"></i>تاریخ تولد</strong>
+                        <p class="text-muted">{{$date}}</p>
+                        <hr>
+                    @endif
                     <strong><i class="fa fa-envelope margin-r-5" style="margin-left: 10px"></i>رایانامه</strong>
                     <p class="text-muted">{{auth()->user()->email}}</p>
                     <hr>

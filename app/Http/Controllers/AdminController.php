@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Morilog\Jalali\CalendarUtils;
 
 class AdminController extends Controller
 {
@@ -50,7 +51,10 @@ class AdminController extends Controller
      */
     public function show()
     {
-        return view('dashboard.admin.personalInfo.index');
+        $birth_date = Auth::user()->birth_date;
+        $dateList = explode('-', $birth_date);
+        $date = implode('/', $dateList);
+        return view('dashboard.admin.personalInfo.index', compact('date'));
     }
 
     /**
@@ -72,10 +76,15 @@ class AdminController extends Controller
      */
     public function update(Request $request)
     {
-
         $user = Auth::user();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
+        $dateString = CalendarUtils::convertNumbers($request->birth_date, true);
+//        dd(CalendarUtils::createCarbonFromFormat('Y/m/d', $dateString)->format('Y/m/d'));
+        $dateList = explode('/', $dateString);
+        $date = implode('-', $dateList);
+        $latinDate = CalendarUtils::createCarbonFromFormat('Y-m-d', $date)->format('Y-m-d');
+        $user->birth_date = $latinDate;
         $user->email = $request->email;
         $user->mobile = $request->mobile;
         $user->save();

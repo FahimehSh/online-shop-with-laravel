@@ -22,6 +22,7 @@
     <!-- Chartist CSS -->
     <link rel="stylesheet" href="{{asset('/dashboardStyle/dist/plugins/chartist-js/chartist.min.css')}}">
     <link rel="stylesheet" href="{{asset('/dashboardStyle/dist/plugins/chartist-js/chartist-plugin-tooltip.css')}}">
+    @yield('styles')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,7 +53,8 @@
                 <form action="#" method="get" class="search-form">
                     <div class="input-group">
             <span class="input-group-btn">
-            <button type="submit" name="search" id="search-btn" class="btn btn-flat" style="background-color: MistyRose">
+            <button type="submit" name="search" id="search-btn" class="btn btn-flat"
+                    style="background-color: MistyRose">
                 <i class="fa fa-search text-black"></i>
             </button>
             </span>
@@ -182,5 +184,6 @@
 <script src="{{asset('/dashboardStyle/dist/plugins/chartist-js/chartist.min.js')}}"></script>
 <script src="{{asset('/dashboardStyle/dist/plugins/chartist-js/chartist-plugin-tooltip.js')}}"></script>
 <script src="{{asset('/dashboardStyle/dist/plugins/functions/chartist-init.js')}}"></script>
+@yield('scripts')
 </body>
 </html>
