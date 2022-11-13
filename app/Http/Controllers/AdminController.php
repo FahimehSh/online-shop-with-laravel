@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Morilog\Jalali\CalendarUtils;
+use Morilog\Jalali\Jalalian;
 
 class AdminController extends Controller
 {
@@ -51,10 +52,13 @@ class AdminController extends Controller
      */
     public function show()
     {
-        $birth_date = Auth::user()->birth_date;
-        $dateList = explode('-', $birth_date);
-        $date = implode('/', $dateList);
-        return view('dashboard.admin.personalInfo.index', compact('date'));
+        if (filled(Auth::user()->birth_date)) {
+            $birth_date = Auth::user()->birth_date;
+            $date = jdate($birth_date)->format('Y/m/d');
+            $jDate = CalendarUtils::convertNumbers($date, false);
+            return view('dashboard.admin.personalInfo.index', compact('jDate'));
+        }
+        return view('dashboard.admin.personalInfo.index');
     }
 
     /**
@@ -65,6 +69,12 @@ class AdminController extends Controller
      */
     public function edit()
     {
+        if (filled(Auth::user()->birth_date)) {
+            $birth_date = Auth::user()->birth_date;
+            $date = jdate($birth_date)->format('Y/m/d');
+            return view('dashboard.admin.personalInfo.edit', compact('date'));
+        }
+
         return view('dashboard.admin.personalInfo.edit');
     }
 
@@ -79,12 +89,9 @@ class AdminController extends Controller
         $user = Auth::user();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
-        $dateString = CalendarUtils::convertNumbers($request->birth_date, true);
-//        dd(CalendarUtils::createCarbonFromFormat('Y/m/d', $dateString)->format('Y/m/d'));
-        $dateList = explode('/', $dateString);
-        $date = implode('-', $dateList);
-        $latinDate = CalendarUtils::createCarbonFromFormat('Y-m-d', $date)->format('Y-m-d');
-        $user->birth_date = $latinDate;
+        $latinDate = CalendarUtils::convertNumbers($request->birth_date, true);
+        $date = CalendarUtils::createCarbonFromFormat('Y/m/d', $latinDate)->format('Y-m-d');
+        $user->birth_date = $date;
         $user->email = $request->email;
         $user->mobile = $request->mobile;
         $user->save();

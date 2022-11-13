@@ -36,13 +36,13 @@
                 <span class="h1 text-uppercase text-dark px-2 ml-n1" style="background-color: MistyRose">آنلاین</span>
             </a>
         </div>
-        <div class="col-lg-6 col-8 text-left">
+        <div class="col-lg-6 col-8">
             <form action="{{route('home.search')}}" method="post">
                 @csrf
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="جستجو در محصولات و مقاله ها" required>
+                    <input type="text" name="search" class="form-control" placeholder="جستجو در محصولات و مقاله ها" style="background-color: MistyRose">
                     <div class="input-group-append">
-                            <span class="input-group-text bg-transparent">
+                            <span class="input-group">
                                 <button type="submit" class="fa fa-search"></button>
                             </span>
                     </div>
@@ -92,26 +92,26 @@
             <nav class="navbar navbar-expand-lg navbar-dark py-3 py-lg-0 px-0">
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="{{route('main')}}" class="nav-item nav-link active">صفحه اصلی</a>
-                        <a href="{{route('shop')}}" class="nav-item nav-link">فروشگاه</a>
-                        <a href="detail.html" class="nav-item nav-link">بلاگ</a>
-                        <a href="contact.html" class="nav-item nav-link">ارتباط با ما</a>
-                        <a href="contact.html" class="nav-item nav-link">درباره ما</a>
+                        <a href="{{route('main')}}" class="nav-item nav-link active" style="color: black">صفحه اصلی</a>
+                        <a href="{{route('shop')}}" class="nav-item nav-link" style="color: black">فروشگاه</a>
+                        <a href="detail.html" class="nav-item nav-link" style="color: black">بلاگ</a>
+                        <a href="{{route('contact')}}" class="nav-item nav-link" style="color: black">ارتباط با ما</a>
+                        <a href="" class="nav-item nav-link" style="color: black">درباره ما</a>
                         @if(!auth()->check())
-                            <a href="{{route('register')}}" class="nav-item nav-link">ثبت نام</a>
-                            <a href="{{route('login')}}" class="nav-item nav-link">ورود</a>
+                            <a href="{{route('register')}}" class="nav-item nav-link" style="color: black">ثبت نام</a>
+                            <a href="{{route('login')}}" class="nav-item nav-link" style="color: black">ورود</a>
                         @else
-                            <a href="{{route('logout')}}" class="nav-item nav-link">خروج</a>
+                            <a href="{{route('logout')}}" class="nav-item nav-link" style="color: black">خروج</a>
                         @endif
                     </div>
                     <div class="navbar-nav mr-auto py-0 d-none d-lg-block">
                         <a href="" class="btn px-0">
-                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart" style="color: #e6005c"></i>
                             <span class="badge text-secondary border border-secondary rounded-circle"
                                   style="padding-bottom: 2px;">0</span>
                         </a>
                         <a href="{{route('cart.items')}}" class="btn px-0 ml-3">
-                            <i class="fas fa-shopping-cart"></i>
+                            <i class="fas fa-shopping-cart" style="color: #e6005c"></i>
                             <span id="items-in-cart" class="badge text-secondary border border-secondary rounded-circle"
                                   style="padding-bottom: 2px;">
                                 {{filled($cart)?$cartItemsCount:0}}
@@ -120,7 +120,7 @@
                         @auth()
                             <a href="{{auth()->user()->is_admin == 1?route('admin.index'):route('user.index')}}"
                                class="btn px-0 ml-3">
-                                <i class="fas fa-user"></i>
+                                <i class="fas fa-user" style="color: #e6005c"></i>
                             </a>
                         @endauth
                     </div>
@@ -143,47 +143,46 @@
                 مدت زمانی کوتاه به دست مشتریان خود برساند و ضمانت بازگشت کالا هم داشته باشد؛ ویژگی‌هایی که فروشگاه
                 اینترنتی دیجی‌کالا سال‌هاست بر روی آن‌ها کار کرده و توانسته از این طریق مشتریان ثابت خود را داشته باشد.
             </p>
-            <p class="mb-2"><i class="fa fa-map-marker-alt ml-3"></i>123 Street, New York, USA
+            <p class="mb-2"><i class="fa fa-map-marker-alt ml-3" style="color: #e6005c"></i>123 Street, New York, USA
             </p>
-            <p class="mb-2"><i class="fa fa-envelope ml-3"></i>info@example.com</p>
-            <p class="mb-0"><i class="fa fa-phone-alt ml-3"></i>+012 345 67890</p>
+            <p class="mb-2"><i class="fa fa-envelope ml-3" style="color: #e6005c"></i>info@example.com</p>
+            <p class="mb-0"><i class="fa fa-phone-alt ml-3" style="color: #e6005c"></i>+012 345 67890</p>
         </div>
         <div class="col-lg-8 col-md-12">
             <div class="row">
                 <div class="col-md-4 mb-5">
                     <h5 class="text-uppercase mb-4">با فروشگاه آنلاین</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="mb-2" href="{{route('main')}}">صفحه اصلی</a>
-                        <a class="mb-2" href="{{route('shop')}}">فروشگاه</a>
-                        <a href="#">ارتباط با ما</a>
-                        <a href="#">درباره ما</a>
-                        <a href="#">بلاگ</a>
+                        <a class="mb-2" href="{{route('main')}}" style="color: black">صفحه اصلی</a>
+                        <a class="mb-2" href="{{route('shop')}}" style="color: black">فروشگاه</a>
+                        <a href="#" style="color: black">ارتباط با ما</a>
+                        <a href="#" style="color: black">درباره ما</a>
+                        <a href="#" style="color: black">بلاگ</a>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
                     <h5 class="text-uppercase mb-4">راهنمای خرید</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="mb-2" href="#">نحوه ثبت سفارش</a>
-                        <a class="mb-2" href="#">رویه ارسال سفارش</a>
-                        <a class="mb-2" href="#">حریم خصوصی</a>
+                        <a class="mb-2" href="#" style="color: black">نحوه ثبت سفارش</a>
+                        <a class="mb-2" href="#" style="color: black">رویه ارسال سفارش</a>
+                        <a class="mb-2" href="#" style="color: black">حریم خصوصی</a>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
                     <p>با ثبت ایمیل، از جدید‌ترین تخفیف‌ها با‌خبر شوید</p>
                     <form action="">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="ایمیل شما">
+                            <input type="text" class="border-light" placeholder="ایمیل شما">
                             <div class="input-group-append">
-                                <button class="btn btn-dark">ثبت</button>
+                                <button class="btn text-white" style="background-color: #e6005c">ثبت</button>
                             </div>
                         </div>
                     </form>
-                    <h6 class="text-secondary text-uppercase mt-4 mb-3">همراه ما باشید!</h6>
-                    <div class="d-flex">
-                        <a class="btn btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-square mr-2" href="#"><i class="fab fa-instagram"></i></a>
+                    <div class="d-flex mt-4">
+                        <a class="btn btn-square mr-2" href="#"><i class="fab fa-twitter" style="color: #e6005c"></i></a>
+                        <a class="btn btn-square mr-2" href="#"><i class="fab fa-facebook-f" style="color: #e6005c"></i></a>
+                        <a class="btn btn-square mr-2" href="#"><i class="fab fa-linkedin-in" style="color: #e6005c"></i></a>
+                        <a class="btn btn-square mr-2" href="#"><i class="fab fa-instagram" style="color: #e6005c"></i></a>
                     </div>
                 </div>
             </div>
@@ -204,7 +203,7 @@
 
 
 <!-- Back to Top -->
-<a href="#" class="btn back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<a href="#" class="btn back-to-top"><i class="fa fa-angle-double-up" style="color: #e6005c"></i></a>
 
 
 <!-- JavaScript Libraries -->

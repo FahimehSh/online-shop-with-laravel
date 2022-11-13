@@ -110,4 +110,9 @@ class HomeController extends Controller
 
         return view('home.search', compact('products', 'articles'));
     }
+
+    public function contact()
+    {
+        return view('home.contact');
+    }
 }

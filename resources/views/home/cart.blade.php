@@ -28,7 +28,7 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus">
+                                        <button class="btn btn-sm text-white btn-minus" style="background-color: #e6005c">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
@@ -36,7 +36,7 @@
                                            class="form-control form-control-sm bg-secondary border-0 text-center"
                                            value="{{$cart_item->quantity}}">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
+                                        <button class="btn btn-sm text-white btn-plus" style="background-color: #e6005c">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -56,7 +56,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control border-0 p-4" placeholder="کد تخفیف خود را وارد کنید.">
                         <div class="input-group-append">
-                            <button class="btn btn-primary">ثبت</button>
+                            <button class="btn text-white" style="background-color: #e6005c">ثبت</button>
                         </div>
                     </div>
                 </form>
@@ -79,7 +79,7 @@
                             <h5>پرداخت نهایی(تومان)</h5>
                             <h5>{{number_format($subTotalPrice - $sumTotalDiscount)}}</h5>
                         </div>
-                        <a href="{{route('checkout.index')}}" class="btn btn-block btn-danger font-weight-bold my-3 py-3">ادامه فرآیند خرید</a>
+                        <a href="{{route('checkout.index')}}" class="btn btn-block text-white font-weight-bold my-3 py-3" style="background-color: #e6005c">ادامه فرآیند خرید</a>
                     </div>
                 </div>
             </div>

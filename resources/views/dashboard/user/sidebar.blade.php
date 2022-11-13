@@ -29,7 +29,7 @@
     </li>
     <li class="active">
         <a href="{{route('logout')}}">
-            <i class="fa fa-power-off"></i>
+            <i class="fa fa-power-off" style="color: #e6005c"></i>
             <span>خروج</span>
             <span class="pull-right-container"></span>
         </a>

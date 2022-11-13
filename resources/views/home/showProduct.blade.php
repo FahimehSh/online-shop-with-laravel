@@ -38,7 +38,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                 <div class="h-100 bg-light p-30">
                     <h3>{{$product->title}}</h3>
                     <div class="d-flex mb-3">
-                        <div class="text-primary mr-2">
+                        <div class="mr-2" style="color: #e6005c">
                             <small class="fas fa-star"></small>
                             <small class="fas fa-star"></small>
                             <small class="fas fa-star"></small>
@@ -78,19 +78,20 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
-                                <a class="btn btn-primary btn-minus">
+                                <a class="btn btn-minus" style="background-color: MistyRose">
                                     <i class="fa fa-minus"></i>
                                 </a>
                             </div>
                             <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
                             <div class="input-group-btn">
-                                <a class="btn btn-primary btn-plus"
-                                   href="">
+                                <a class="btn btn-plus"
+                                   href="" style="background-color: MistyRose">
                                     <i class="fa fa-plus"></i>
                                 </a>
                             </div>
                         </div>
-                        <a class="btn btn-danger px-3" href="{{route('add.to.cart', ['product'=>$product->id])}}">
+                        <a class="btn btn-danger px-3" href="{{route('add.to.cart', ['product'=>$product->id])}}"
+                           style="background-color: #e6005c">
                             <i class="fa fa-shopping-cart mr-1"></i>
                             افزودن به سبد خرید
                         </a>
@@ -99,16 +100,16 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                         <strong class="text-dark mr-2">اشتراک گذاری:</strong>
                         <div class="d-inline-flex">
                             <a class="text-dark px-2" href="">
-                                <i class="fab fa-facebook-f"></i>
+                                <i class="fab fa-facebook-f" style="color: #e6005c"></i>
                             </a>
                             <a class="text-dark px-2" href="">
-                                <i class="fab fa-twitter"></i>
+                                <i class="fab fa-twitter" style="color: #e6005c"></i>
                             </a>
                             <a class="text-dark px-2" href="">
-                                <i class="fab fa-linkedin-in"></i>
+                                <i class="fab fa-linkedin-in" style="color: #e6005c"></i>
                             </a>
                             <a class="text-dark px-2" href="">
-                                <i class="fab fa-pinterest"></i>
+                                <i class="fab fa-pinterest" style="color: #e6005c"></i>
                             </a>
                         </div>
                     </div>
@@ -133,7 +134,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
 
                         </div>
                         <div class="tab-pane fade" id="tab-pane-2">
-                            <h4 class="mb-3">Additional Information</h4>
+                            <h4 class="mb-3">اطلاعات بیشتر</h4>
                             <p>
 
                             </p>
@@ -152,32 +153,33 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                         <div class="tab-pane fade" id="tab-pane-3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4 class="mb-4">1 review for "Product Name"</h4>
+                                    <h4 class="mb-4">دیدگاه کاربران</h4>
                                     <div class="media mb-4">
-                                        <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
+                                        <img src="{{asset('dashboardStyle/dist/img/body-bg.jpg')}}" alt="Image"
+                                             class="mr-3 mt-1"
                                              style="width: 45px;">
                                         <div class="media-body">
                                             <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                            <div class="text-primary mb-2">
+                                            <div class="mb-2" style="color: #e6005c">
                                                 <i class="fas fa-star"></i>
                                                 <i class="fas fa-star"></i>
                                                 <i class="fas fa-star"></i>
                                                 <i class="fas fa-star-half-alt"></i>
                                                 <i class="far fa-star"></i>
                                             </div>
-                                            <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam
-                                                ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod
-                                                ipsum.</p>
+                                            <p>
+                                                محصول خوبیه
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h4 class="mb-4">Leave a review</h4>
-                                    <small>Your email address will not be published. Required fields are marked
-                                        *</small>
+                                    <h4 class="mb-4">ثبت دیدگاه</h4>
+                                    <small>آدرس ایمیل شما منتشر نمی شود. فیلدهای ضروری با * مشخص شده اند.
+                                    </small>
                                     <div class="d-flex my-3">
-                                        <p class="mb-0 mr-2">Your Rating * :</p>
-                                        <div class="text-primary">
+                                        <p class="mb-0 mr-2">امتیاز شما * :</p>
+                                        <div style="color: #e6005c">
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
@@ -187,19 +189,24 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}} alt="Image">
                                     </div>
                                     <form>
                                         <div class="form-group">
-                                            <label for="message">Your Review *</label>
-                                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Your Name *</label>
+                                            <label for="name">نام شما *</label>
                                             <input type="text" class="form-control" id="name">
                                         </div>
                                         <div class="form-group">
-                                            <label for="email">Your Email *</label>
+                                            <label for="email">ایمیل شما *</label>
                                             <input type="email" class="form-control" id="email">
                                         </div>
+                                        <div class="form-group">
+                                            <label for="name">موضوع</label>
+                                            <input type="text" class="form-control" id="name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message">دیدگاه شما *</label>
+                                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                        </div>
                                         <div class="form-group mb-0">
-                                            <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
+                                            <input type="submit" value="ثبت دیدگاه" class="btn text-white px-3"
+                                                   style="background-color: #e6005c">
                                         </div>
                                     </form>
                                 </div>
@@ -225,18 +232,25 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}" alt="">
                                 <div class="product-action">
                                     <a class="btn btn-outline-dark btn-square"
                                        href="{{route('add.to.cart', ['product'=>$product->id])}}"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                            class="fa fa-shopping-cart" style="color: #e6005c"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href="">
+                                        <i class="far fa-heart" style="color: #e6005c"></i>
+                                    </a>
                                 </div>
                             </div>
                             <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate"
-                                   href="{{route('show.product',['product'=>$item->id])}}">{{$item->title}}</a>
+                                <a class="h6 text-decoration-none"
+                                   href="{{route('show.product',['product'=>$item->id])}}">{{$item->title}}
+                                </a>
                                 <div class="d-flex align-items-center justify-content-center mt-2">
-                                    <h5>12300</h5>
-                                    <h6 class="text-muted ml-2">
-                                        <del>{{$item->presentPrice()}}</del>
-                                    </h6>
+                                    @if(filled($item->discount))
+                                        <h6 class="text-muted ml-2">
+                                            <del>{{$item->presentPrice()}}</del>
+                                        </h6>
+                                        <h5>{{number_format($item->price - $item->discount->amount)}} تومان</h5>
+                                    @else
+                                        <h5>{{$item->presentPrice()}} تومان</h5>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -46,10 +46,10 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <a href="{{route('personal-info.address.edit', ['address'=>$address->id])}}"
-                                           class="btn btn-success">ویرایش آدرس</a>
+                                           class="btn btn-success">ویرایش</a>
                                         <a href="{{route('personal-info.address.destroy', ['address'=>$address->id])}}"
                                            onclick="return confirm('آیا از حذف این آدرس مطمئن هستید؟')"
-                                           class="btn btn-danger">حذف آدرس</a>
+                                           class="btn btn-danger">حذف</a>
                                     </div>
                                 </div>
                             </div>

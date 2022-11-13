@@ -19,7 +19,7 @@
                                     <label>نام استان</label>
 
                                     <select name="state_id" class="form-control">
-                                        <option>نام استان خود را انتخاب کنید:</option>
+                                        <option disabled>نام استان خود را انتخاب کنید:</option>
                                         @foreach($states as $state)
                                             <option
                                                 value="{{$state->id}}"
@@ -32,7 +32,7 @@
                                     <label>نام شهر</label>
 
                                     <select name="city_id" class="form-control">
-                                        <option>نام شهر خود را انتخاب کنید:</option>
+                                        <option disabled>نام شهر خود را انتخاب کنید:</option>
                                         @foreach($cities as $city)
                                             <option
                                                 value="{{$city->id}}"
@@ -56,7 +56,7 @@
                                            class="form-control" type="text">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <button class="btn btn-block btn-primary font-weight-bold py-3" type="submit">تغییر
+                                    <button class="btn text-white font-weight-bold py-3" type="submit" style="background-color: #e6005c">تغییر
                                         آدرس
                                     </button>
                                 </div>
@@ -84,7 +84,7 @@
                                         <label>نام استان</label>
 
                                         <select name="state_id" class="form-control">
-                                            <option>نام استان خود را انتخاب کنید:</option>
+                                            <option disabled>نام استان خود را انتخاب کنید:</option>
                                             @foreach($states as $state)
                                                 <option
                                                     value="{{$state->id}}"
@@ -97,7 +97,7 @@
                                         <label>نام شهر</label>
 
                                         <select name="city_id" class="form-control">
-                                            <option>نام شهر خود را انتخاب کنید:</option>
+                                            <option disabled>نام شهر خود را انتخاب کنید:</option>
                                             @foreach($cities as $city)
                                                 <option
                                                     value="{{$city->id}}"
@@ -119,7 +119,7 @@
                                                class="form-control" type="text">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <button class="btn btn-block btn-primary font-weight-bold py-3" type="submit">
+                                        <button class="btn text-white font-weight-bold py-3" type="submit" style="background-color: #e6005c">
                                             افزودن آدرس جدید
                                         </button>
                                     </div>
@@ -143,7 +143,7 @@
                                     <label>نام استان</label>
 
                                     <select name="state_id" class="form-control">
-                                        <option>نام استان خود را انتخاب کنید:</option>
+                                        <option disabled>نام استان خود را انتخاب کنید:</option>
                                         @foreach($states as $state)
                                             <option
                                                 value="{{$state->id}}">{{$state->name}}</option>
@@ -155,7 +155,7 @@
                                     <label>نام شهر</label>
 
                                     <select name="city_id" class="form-control">
-                                        <option>نام شهر خود را انتخاب کنید:</option>
+                                        <option disabled>نام شهر خود را انتخاب کنید:</option>
                                         @foreach($cities as $city)
                                             <option
                                                 value="{{$city->id}}">{{$city->name}}</option>
@@ -176,7 +176,7 @@
                                            class="form-control" type="text">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <button class="btn btn-block btn-primary font-weight-bold py-3" type="submit">
+                                    <button class="btn text-white font-weight-bold py-3" type="submit" style="background-color: #e6005c">
                                         افزودن آدرس جدید
                                     </button>
                                 </div>
@@ -224,7 +224,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <button class="btn btn-block btn-primary font-weight-bold py-3" type="submit">ثبت
+                            <button class="btn btn-block text-white font-weight-bold py-3" type="submit" style="background-color: #e6005c">ثبت
                                 سفارش
                             </button>
                         </form>

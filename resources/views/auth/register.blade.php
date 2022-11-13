@@ -1,66 +1,77 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('home.master')
+@section('page-title', 'صفحه ثبت نام')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('content')
+    <div class="text-right">
+        <x-guest-layout>
+            <x-auth-card>
+                <x-slot name="logo">
+                    <a href="/">
+                        {{--                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />--}}
+                    </a>
+                </x-slot>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+                <!-- Validation Errors -->
+                <x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
-            <!-- first_name -->
-            <div>
-                <x-label for="first_name" :value="__('first_name')" />
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
 
-                <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus />
-            </div>
+                    <!-- first_name -->
+                    <div>
+                        <x-label for="first_name" :value="__('نام')"/>
 
-            <!-- last_name -->
-            <div>
-                <x-label for="last_name" :value="__('last_name')" />
+                        <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name"
+                                 :value="old('first_name')" required autofocus/>
+                    </div>
 
-                <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus />
-            </div>
+                    <!-- last_name -->
+                    <div>
+                        <x-label for="last_name" :value="__('نام خانوادگی')"/>
 
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                        <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name"
+                                 :value="old('last_name')" required autofocus/>
+                    </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+                    <!-- Email Address -->
+                    <div class="mt-4">
+                        <x-label for="email" :value="__('ایمیل')"/>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                                 required/>
+                    </div>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
+                    <!-- Password -->
+                    <div class="mt-4">
+                        <x-label for="password" :value="__('رمز عبور')"/>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                        <x-input id="password" class="block mt-1 w-full"
+                                 type="password"
+                                 name="password"
+                                 required autocomplete="new-password"/>
+                    </div>
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
+                    <!-- Confirm Password -->
+                    <div class="mt-4">
+                        <x-label for="password_confirmation" :value="__('تایید رمز عبور')"/>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
+                        <x-input id="password_confirmation" class="block mt-1 w-full"
+                                 type="password"
+                                 name="password_confirmation" required/>
+                    </div>
 
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+                    <div class="flex items-center justify-end mt-4">
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                            {{ __('قبلا ثبت نام کرده اید؟') }}
+                        </a>
+
+                        <x-button class="ml-4" style="background-color: #e6005c">
+                            {{ __('ثبت نام') }}
+                        </x-button>
+                    </div>
+                </form>
+            </x-auth-card>
+        </x-guest-layout>
+    </div>
+@endsection
+

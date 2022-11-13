@@ -30,8 +30,8 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                                         <p class="mx-md-5 px-5 animate__animated animate__bounceIn">
                                             {{$product->meta_title}}
                                         </p>
-                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                                           href="{{route('show.product',['product'=>$product->slug])}}">خرید</a>
+                                        <a class="btn text-white py-2 px-4 mt-3 animate__animated animate__fadeInUp"
+                                           href="{{route('show.product',['product'=>$product->slug])}}" style="background-color: #e6005c">خرید</a>
                                     </div>
                                 </div>
                             </div>
@@ -63,8 +63,8 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                             <div class="product-action">
                                 <a class="btn btn-outline-dark btn-square"
                                    href="{{route('add.to.cart', ['product'=>$product->slug])}}"><i
-                                        class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                        class="fa fa-shopping-cart" style="color: #e6005c"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart" style="color: #e6005c"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -90,7 +90,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
 
     <!-- Categories Start -->
     <div class="container-fluid pt-5">
-        <h2 class="section-title position-relative text-uppercase text-right  mx-xl-5 mb-4"><span
+        <h2 class="section-title position-relative text-uppercase text-right mx-xl-5 mb-4"><span
                 class="bg-secondary pr-3">دسته بندی ها</span></h2>
         <div class="row px-xl-5 pb-3">
             @foreach($firstCategories as $category)
@@ -98,7 +98,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                 @foreach($category->children as $child)
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                     <a class="text-decoration-none" href="{{route('shop.productsInCategory', ['slug'=>$child->slug])}}">
-                        <div class="cat-item d-flex align-items-center mb-4">
+                        <div class="cat-item d-flex align-items-center mb-4" style="background-color: MistyRose">
                             <div class="overflow-hidden" style="width: 100px; height: 100px;">
                                 <img class="img-fluid"
                                      src="{{filled($category->files)?
@@ -123,26 +123,26 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}" alt="">
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3">
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                <div class="d-flex align-items-center mb-4" style="padding: 30px; background-color: MistyRose">
+                    <h1 class="fa fa-check m-0 mr-3" style="color: #e6005c"></h1>
                     <h5 class="font-weight-semi-bold m-0">ضمانت اصل بودن کالا</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-credit-card text-primary m-0 mr-2"></h1>
+                <div class="d-flex align-items-center mb-4" style="padding: 30px; background-color: MistyRose">
+                    <h1 class="fa fa-credit-card m-0 mr-2" style="color: #e6005c"></h1>
                     <h5 class="font-weight-semi-bold m-0">امکان پرداخت در محل</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                <div class="d-flex align-items-center mb-4" style="padding: 30px; background-color: MistyRose">
+                    <h1 class="fas fa-exchange-alt m-0 mr-3" style="color: #e6005c"></h1>
                     <h5 class="font-weight-semi-bold m-0">14 روز ضمانت بازگشت کالا</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                <div class="d-flex align-items-center mb-4" style="padding: 30px; background-color: MistyRose">
+                    <h1 class="fa fa-phone-volume m-0 mr-3" style="color: #e6005c"></h1>
                     <h5 class="font-weight-semi-bold m-0">پشتیبانی 24 ساعته در 7 روز هفته</h5>
                 </div>
             </div>

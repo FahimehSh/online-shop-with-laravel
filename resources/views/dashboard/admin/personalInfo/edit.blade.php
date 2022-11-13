@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-success" type="submit">ثبت تغییرات</button>
+                                            <button class="btn text-white" type="submit" style="background-color: #e6005c">ثبت تغییرات</button>
                                         </div>
                                     </div>
                                 </form>

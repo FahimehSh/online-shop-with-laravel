@@ -64,16 +64,19 @@
                 </form>
                 <!-- search form --> </div>
             <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
+                <ul class="navbar-nav">
                     <!-- Messages: style can be found in dropdown.less-->
                     <li>
                         <a href="{{route('main')}}">
-                            <i class="fa fa-home"></i>
+                            <i class="fa fa-home" style="color: #e6005c"></i>
                         </a>
                     </li>
                     <li class="dropdown messages-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
-                                class="fa fa-envelope-o"></i>
-                            <div class="notify"><span class="heartbit"></span> <span class="point"></span></div>
+                                class="fa fa-envelope-o" style="color: #e6005c"></i>
+                            <div class="notify">
+                                <span class="heartbit"></span>
+                                <span class="point"></span>
+                            </div>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header">You have 4 new messages</li>
@@ -95,7 +98,7 @@
                     <!-- Notifications: style can be found in dropdown.less -->
                     <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
-                                class="fa fa-bell-o"></i>
+                                class="fa fa-bell-o" style="color: #e6005c"></i>
                             <div class="notify"><span class="heartbit"></span> <span class="point"></span></div>
                         </a>
                         <ul class="dropdown-menu">
@@ -117,7 +120,7 @@
                     <li class="dropdown user user-menu p-ph-res">
                         <a href="#" class="dropdown-toggle"
                            data-toggle="dropdown">
-                            <span class="fa fa-user-o"></span>
+                            <span class="fa fa-user-o" style="color: #e6005c"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{route('personal-info')}}"><i class="icon-profile-male"></i>حساب کاربری</a>
@@ -130,7 +133,7 @@
                     </li>
                     <li>
                         <a href="{{route('cart.items')}}">
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="fa fa-shopping-cart" style="color: #e6005c"></i>
                         </a>
                     </li>
                 </ul>

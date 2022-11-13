@@ -27,7 +27,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                     <hr>
                     @if(!is_null(auth()->user()->birth_date))
                         <strong><i class="fa fa-user margin-r-5" style="margin-left: 10px"></i>تاریخ تولد</strong>
-                        <p class="text-muted">{{$date}}</p>
+                        <p class="text-muted">{{$jDate}}</p>
                         <hr>
                     @endif
                     <strong><i class="fa fa-envelope margin-r-5" style="margin-left: 10px"></i>رایانامه</strong>
@@ -56,7 +56,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <a class="btn btn-success" href="{{route('personal-info.edit')}}">ویرایش حساب کاربری</a>
+                <a class="btn text-white" href="{{route('personal-info.edit')}}" style="background-color: #e6005c">ویرایش حساب کاربری</a>
             </div>
         </div>
     </div>

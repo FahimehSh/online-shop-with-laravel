@@ -1,12 +1,16 @@
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{route('personal-info')}}"> <i class="fa fa-user-circle"></i> <span>حساب کاربری</span> </a>
+        <a href="{{route('personal-info')}}">
+            <i class="fa fa-user-circle"></i>
+            <span>حساب کاربری</span>
+        </a>
     </li>
     <li class="treeview"><a href="#"> <i class="fa fa-map-marker"></i> <span>آدرس ها</span> <span
                 class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
         <ul class="treeview-menu">
             <li><a href="{{route('personal-info.address.index')}}"><i class="fa fa-circle"></i>لیست آدرس ها</a></li>
-            <li><a href="{{route('personal-info.address.create')}}"><i class="fa fa-circle"></i>افزودن آدرس جدید</a></li>
+            <li><a href="{{route('personal-info.address.create')}}"><i class="fa fa-circle"></i>افزودن آدرس جدید</a>
+            </li>
         </ul>
     </li>
     <li>
@@ -87,7 +91,7 @@
     </li>
     <li>
         <a href="{{route('logout')}}">
-            <i class="fa fa-power-off"></i>
+            <i class="fa fa-power-off" style="color: #e6005c"></i>
             <span>خروج از حساب کاربری</span>
             <span class="pull-right-container"></span>
         </a>

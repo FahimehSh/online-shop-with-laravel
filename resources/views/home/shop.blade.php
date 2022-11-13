@@ -53,10 +53,10 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                                            href="{{route('add.to.cart', ['product'=>$product->slug])}}"
                                            data-id="{{$product->id}}" data-name="{{$product->title}}"
                                            data-price="{{$product->presentPrice()}}">
-                                            <i class="fa fa-shopping-cart"></i>
+                                            <i class="fa fa-shopping-cart" style="color: #e6005c"></i>
                                         </a>
                                         <a class="btn btn-outline-dark btn-square" href="">
-                                            <i class="far fa-heart"></i>
+                                            <i class="far fa-heart" style="color: #e6005c"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -69,7 +69,8 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
                                             <h6 class="text-muted ml-2">
                                                 <del>{{$product->presentPrice()}}</del>
                                             </h6>
-                                            <h5>{{number_format($product->price - $product->discount->amount)}} تومان</h5>
+                                            <h5>{{number_format($product->price - $product->discount->amount)}}
+                                                تومان</h5>
                                         @else
                                             <h5>{{$product->presentPrice()}} تومان</h5>
                                         @endif
@@ -90,7 +91,7 @@ asset('dashboardStyle/dist/img/body-bg.jpg')}}"
             <!-- Shop Sidebar Start -->
             <div class="col-lg-3 col-md-4 text-right">
                 <!-- Price Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">فیلتر بر اساس قیمت</span>
                 </h5>
                 <div class="bg-light p-4 mb-30">
 

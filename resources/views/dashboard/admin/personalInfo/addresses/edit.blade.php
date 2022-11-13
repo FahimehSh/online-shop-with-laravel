@@ -66,7 +66,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <button class="btn btn-success" type="submit">ویرایش آدرس</button>
+                    <button class="btn text-white" type="submit" style="background-color: #e6005c">ویرایش آدرس</button>
                 </div>
             </div>
         </form>

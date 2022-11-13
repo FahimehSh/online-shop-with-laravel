@@ -56,7 +56,7 @@ class AddressController extends Controller
         $address->postal_code = $request->postal_code;
         $address->save();
 
-        return back();
+        return Redirect::route('personal-info.address.index');
     }
 
     /**

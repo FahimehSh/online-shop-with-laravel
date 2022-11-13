@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 //home
 Route::get('/', [HomeController::class, 'index'])->name('main');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::prefix('/shop')->namespace('shop')->group(function () {
     Route::get('/', [ShopController::class, 'index'])

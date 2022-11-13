@@ -185,7 +185,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-rounded btn-primary pull-left">ارسال</button>
+                    <button type="submit" class="btn text-white pull-left" style="background-color: #e6005c">ارسال</button>
                 </form>
             </div>
         </div>
